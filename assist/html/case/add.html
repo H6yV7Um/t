@@ -1,0 +1,103 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>用例-添加</title>
+        <link rel="stylesheet" href="../../deps/bootstrap/css/bootstrap.css">
+        <link rel="stylesheet" href="../../css/admin.css">
+        <link rel="stylesheet" href="../../deps/codemirror/lib/codemirror.css">
+        <link rel="stylesheet" href="../../deps/codemirror/theme/panda-syntax.css">
+        <script src="../../deps/codemirror/lib/codemirror.js"></script>
+        <script src="../../deps/codemirror/mode/javascript/javascript.js"></script>
+    </head>
+    <body>
+        <nav class="navbar  navbar-default">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a href="#" class="navbar-brand">AUTO TEST</a>
+                </div>
+            </div>
+        </nav>
+        <div class="container">
+            <div class="panel panel-default">
+                <div class="panel-heading">修改用例</div>
+                <div class="panel-body">
+                    <form class="form-horizontal">
+                        <div class="form-group">
+                            <label for="type" class="col-sm-2 control-label">用例所属</label>
+                            <div class="col-sm-10">
+                                <select class="form-control" name="type">
+                                    <option value="1">QQ钱包积分商城</option>
+                                    <option value="1">QQ卡券</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="type" class="col-sm-2 control-label">用例描述</label>
+                            <div class="col-sm-10">
+                                <textarea name="desc" class="form-control" rows="3"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="name" class="col-sm-2 control-label">用例名称</label>
+                            <div class="col-sm-10">
+                                <input type="name" class="form-control" id="name" placeholder="输入用例名称，最长16个字符">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="type" class="col-sm-2 control-label">用例类型</label>
+                            <div class="col-sm-10">
+                                <select class="form-control" name="type">
+                                    <option value="1">UI自动化测试</option>
+                                    <option value="1">单元测试</option>
+                                </select>
+                                
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="type" class="col-sm-2 control-label">运行环境</label>
+                            <div class="col-sm-10">
+                               <p class="form-control-static">node.js</p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="code" class="col-sm-2 control-label">用例代码</label>
+                            <div class="col-sm-10" >
+                                <textarea name="code" id="code-editor"></textarea>
+                            </div>    
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-10">
+                                <button type="submit" class="btn btn-default">取消</button>
+                                <button type="submit" class="btn btn-primary">保存</button>
+                            </div>
+                        </div>
+                        
+                    </form>
+                </div>
+            </div>
+                
+        </div>
+        <script>
+            var codeEditor = CodeMirror.fromTextArea(document.getElementById('code-editor'),{
+                value : '',
+                lineNumbers : true, // 显示行号
+                name : "javascript",
+                theme : "panda-syntax",
+                //readOnly : true,
+                autoCloseTags: true,
+                tabSize : 4,
+                indentUnit : 4,
+                extraKeys: {
+                    "F11": function(cm) {
+                        cm.setOption("fullScreen", !cm.getOption("fullScreen"));
+                    },
+                    "Esc": function(cm) {
+                        if (cm.getOption("fullScreen")) cm.setOption("fullScreen", false);
+                    }
+                },
+                mode: "text/javascript"   // 代码类型
+            })
+        </script>
+    </body>
+</html>
