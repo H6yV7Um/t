@@ -4,9 +4,16 @@ body {
 .mar-l-5 {margin-left: 5px;}
 .mar-l-10 {margin-left: 10px;}
 
+/*
+ * for js
+ */
+[data-mod] {
+    display: none;
+}
+
 
 .form-fieldset {
-    padding: 10px;
+    padding: 15px;
     border: 1px dashed #ccc;
     border-radius: 3px;
     padding-bottom: 0px;
