@@ -15,8 +15,8 @@ const Ui = {
         // Figure out if we're getting a template, or if we need to
         // load the template - and be sure to cache the result.
         var fn = !/\W/.test(str) ?
-            cache[str] = cache[str] ||
-            tmpl(document.getElementById(str).innerHTML) :
+            // cache[str] = cache[str] ||
+            Ui.tmpl(document.getElementById(str).innerHTML) :
     
             // Generate a reusable function that will serve as a template
             // generator (and which will be cached).
@@ -44,6 +44,22 @@ const Ui = {
             title : `提示`,
             content : msg
         });
+        return dialog;
+    },
+    confirm : function(title,msg,button) {
+        if ( arguments.length == 2 ) {
+            msg = title;
+            button = msg;
+            title = null;
+        }
+        let dialog = new Ui.Dialog({
+            title : title ? title : `提示`,
+            content : msg,
+            button : [{
+                text : `关闭`
+            },button]
+        });
+        return dialog;
     }
 }
 
@@ -51,7 +67,7 @@ const Ui = {
     function Dialog(opts) {
         this.opts = {
             title   : opts.title   || `Title`,
-            content : opts.content || `Content`,
+            content : opts.content || `<div class="text-center"><i class="loading"></i></div>`,
             button  : opts.button  || [{
                 text : `关闭`
             }],
@@ -59,12 +75,20 @@ const Ui = {
             onClick : opts.onClick || function(){}
         }
         this.target = null;
+        this.opts.button.forEach((item,index) => {
+            if ( !item.style ) {
+                item.style = index % 2 == 0 ? `btn-default` : `btn-primary`
+            }
+            if ( typeof item.autoClose == 'undefined' ) {
+                item.autoClose = true;
+            }
+        });
         this.init();
     }
     Dialog.prototype = {
         template : 
             `<div class="modal-box">\
-                <div class="modal fade show" data-ui="modal">\
+                <div class="modal fade" data-ui="modal">\
                     <div class="modal-dialog">\
                         <div class="modal-content">\
                             <div class="modal-header">\
@@ -78,7 +102,7 @@ const Ui = {
                             <% if ( opts.button.length > 0 ) { %>\
                             <div class="modal-footer">\
                                 <% for ( var i = 0; i < opts.button.length; i++ ) { %>\
-                                <button type="button" class="btn btn-default" data-act="btn" data-idx="<%=i %>"><%=opts.button[i].text %></button>\
+                                <button type="button" class="btn <%=opts.button[i].style %>" data-act="btn" data-idx="<%=i %>"><%=opts.button[i].text %></button>\
                                 <% } %>\
                             </div>\
                             <% } %>\
@@ -110,8 +134,11 @@ const Ui = {
             this.target.on('click','[data-act="btn"]',(evt) => {
                 let target = $(evt.target);
                 let idx = Number(target.attr('data-idx'));
-                if ( typeof this.opts.button[idx] == 'function' ) {
-                    this.opts.button[idx].call(this,evt);
+                if ( this.opts.button[idx] && typeof this.opts.button[idx].click == 'function' ) {
+                    this.opts.button[idx].click.call(this,evt);
+                    if ( this.opts.button[idx].autoClose ) {
+                        this.remove();
+                    }
                 } else {
                     this.remove();
                 }
@@ -122,6 +149,9 @@ const Ui = {
                 this.target.remove();
             },500);
             this.target.find('.in').removeClass('in');
+        },
+        updateContent : function(content) {
+            this.ui.content.html(content);
         }
     }
 
