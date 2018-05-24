@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width,initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
         <meta name="format-detection" content="telephone=no">
-        <title>用例-添加</title>
+        <title>用例-列表</title>
         <link rel="stylesheet" href="../../deps/bootstrap/css/bootstrap.css">
         <link rel="stylesheet" href="../../css/admin.css">
         <link rel="stylesheet" href="../../deps/codemirror/lib/codemirror.css">
@@ -22,7 +22,150 @@
             </div>
         </nav>
         <div class="container">
-
+            <ol class="breadcrumb">
+                <li><a href="#">QQ项目1</a></li>
+                <li class="active">用例列表</li>
+            </ol>
+            <ul class="nav nav-tabs mar-b-15" role="tablist">
+                <li role="presentation" class="active" ><a href="#task" aria-controls="home" role="tab" data-toggle="tab">任务列表</a></li>
+                <li role="presentation" ><a href="#case" aria-controls="case" role="tab" data-toggle="tab">用例列表</a></li>
+            </ul>
+            <div class="tab-content">
+                
+                <div role="tabpanel" class="tab-pane active" id="task">
+                    <div class="panel-group" id="task_group" role="tablist" aria-multiselectable="true">
+                        <div class="panel panel-default">
+                            <div class="panel-heading" role="tab" id="task_one">
+                                <h4 class="panel-title">
+                                    <a role="button" data-toggle="collapse" data-parents="#task_group" href="">
+                                        QQ业务1的测试任务
+                                    </a>
+                                </h4>
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading" role="tab" id="task_one">
+                                <h4 class="panel-title">
+                                    <a role="button" data-toggle="collapse" data-parents="#task_group" href="">
+                                        QQ业务2的测试任务
+                                    </a>
+                                </h4>
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading" role="tab" id="task_one">
+                                <h4 class="panel-title">
+                                    <a role="button" data-toggle="collapse" data-parents="#task_group" href="">
+                                        QQ业务2的测试任务
+                                    </a>
+                                </h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div role="tabpanel" class="tab-pane " id="case">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>用例名称</th>
+                                <th>所属项目</th>
+                                <th>创建人</th>
+                                <th>用例类型</th>
+                                <th>操作</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>TEST_01</td>
+                                <td>QQ项目1</td>
+                                <td>CK.Ming</td>
+                                <td>连通性测试</td>
+                                <td>
+                                    <button type="button" class="btn btn-black btn-xs" title="编辑">
+                                        <i class="glyphicon glyphicon-pencil"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-default btn-xs" title="详情">
+                                        <i class="glyphicon glyphicon-list-alt"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>TEST_02</td>
+                                <td>QQ项目1</td>
+                                <td>CK.Ming</td>
+                                <td>UI自动化测试</td>
+                                <td>
+                                    <button type="button" class="btn btn-black btn-xs" title="编辑">
+                                        <i class="glyphicon glyphicon-pencil"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-default btn-xs" title="详情">
+                                        <i class="glyphicon glyphicon-list-alt"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>TEST_02</td>
+                                <td>QQ项目1</td>
+                                <td>CK.Ming</td>
+                                <td>UI自动化测试</td>
+                                <td>
+                                    <button type="button" class="btn btn-black btn-xs" title="编辑">
+                                        <i class="glyphicon glyphicon-pencil"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-default btn-xs" title="详情">
+                                        <i class="glyphicon glyphicon-list-alt"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>TEST_01</td>
+                                <td>QQ项目1</td>
+                                <td>CK.Ming</td>
+                                <td>连通性测试</td>
+                                <td>
+                                    <button type="button" class="btn btn-black btn-xs" title="编辑">
+                                        <i class="glyphicon glyphicon-pencil"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-default btn-xs" title="详情">
+                                        <i class="glyphicon glyphicon-list-alt"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>TEST_02</td>
+                                <td>QQ项目1</td>
+                                <td>CK.Ming</td>
+                                <td>UI自动化测试</td>
+                                <td>
+                                    <button type="button" class="btn btn-black btn-xs" title="编辑">
+                                        <i class="glyphicon glyphicon-pencil"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-default btn-xs" title="详情">
+                                        <i class="glyphicon glyphicon-list-alt"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>TEST_02</td>
+                                <td>QQ项目1</td>
+                                <td>CK.Ming</td>
+                                <td>UI自动化测试</td>
+                                <td>
+                                    <button type="button" class="btn btn-black btn-xs" title="编辑">
+                                        <i class="glyphicon glyphicon-pencil"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-default btn-xs" title="详情">
+                                        <i class="glyphicon glyphicon-list-alt"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
         </div>
+        <script src="../../deps/bootstrap/js/bootstrap.min.js"></script>
+        <script src="./list.js"></script>
     </body>
 </html>

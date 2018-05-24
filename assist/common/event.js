@@ -5,6 +5,13 @@ const CommonEvent = {
     init : function() {
         this.select();
         this.click();
+        this.tab();
+    },
+    tab : function() {
+        $(document.body).on('click','[data-tab]',function(evt){
+            let target = $(evt.target);
+            this._handlerTab(target);
+        });
     },
     click : function() {
         $(document.body).on('click','[data-action]',function(evt){
@@ -31,6 +38,18 @@ const CommonEvent = {
             let target = $(evt.target);
             this._handlerSelect(target);
         });
+    },
+    _handlerTab : function(target) {
+        let key = $.trim( target.attr('data-key') );
+        let modkey = target.attr('data-modkey');
+        let mods = $(`[data-mod=${modkey}]`);
+            mods.hide();
+            mods.each(function(){
+                let $mod = $(this);
+                if ( $mod.attr('data-key') == key ) {
+                    $mod.show();
+                }
+            });
     },
     _initSelect : function() {
         const me = this;
