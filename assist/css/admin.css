@@ -11,7 +11,7 @@ body {
     border-radius: 3px;
     padding-bottom: 0px;
     margin-bottom: 15px;
-    background: #fafafa;;
+    background: #fafafa;
 }
 
 legend {
@@ -23,9 +23,21 @@ legend {
     background-color: none;
     display: inline-block;
     width: auto;
-    background: #888;
+    background: #525252;
     color: #fff;
     border-radius: 2px;
     font-weight: normal;
     box-shadow: 0px 1px 2px #bbb8b8;
+}
+
+.form-fieldset.nest-1 {
+    background: #f1f1f1;
+}
+
+.form-fieldset.nest-1 legend {
+    background: #888;
+    color: #525252;
+    background: #fff;
+    border: 1px #cccccc solid;
+    box-shadow: 0px 2px 1px #e0e0e0;
 }

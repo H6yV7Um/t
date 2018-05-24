@@ -61,18 +61,26 @@
                                 </div>
                             </div>
                             <!--S:连通性配置-->
-                            <div class="form-group">
-                                <label for="type" class="col-sm-2 control-label">测试用户</label>
-                                <div class="col-sm-10">
-                                    <select class="form-control" name="type">
-                                        <option value="1">2060298388</option>
-                                        <option value="2">2060128388</option>
-                                    </select>
-                                    <!-- <p class="form-control-static">request</p> -->
+                            <fieldset class="form-fieldset nest-1">
+                                <legend>输入配置</legend>
+                                <div class="form-group">
+                                    <label for="url" class="col-sm-2 control-label">请求URL</label>
+                                    <div class="col-sm-10">
+                                            <input type="url" class="form-control" id="url" placeholder="输入检测的URL">
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="form-group">
-                                    <label for="type" class="col-sm-2 control-label">客户端</label>
+                                <div class="form-group">
+                                    <label for="type" class="col-sm-2 control-label">测试用户</label>
+                                    <div class="col-sm-10">
+                                        <select class="form-control" name="type">
+                                            <option value="1">2060298388</option>
+                                            <option value="2">2060128388</option>
+                                        </select>
+                                        <!-- <p class="form-control-static">request</p> -->
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="type" class="col-sm-2 control-label">User Agent</label>
                                     <div class="col-sm-10">
                                         <select class="form-control" name="type">
                                             <option value="1">普通</option>
@@ -82,6 +90,20 @@
                                         <!-- <p class="form-control-static">request</p> -->
                                     </div>
                                 </div>
+                                
+                            </fieldset>
+                            <fieldset class="form-fieldset nest-1">
+                                <legend>成功判定</legend>
+                                <div class="form-group">
+                                    <label for="type" class="col-sm-2 control-label">HTTP状态码</label>
+                                    <div class="col-sm-10">
+                                        <select class="form-control" name="type">
+                                            <option value="200">200</option>
+                                        </select>
+                                        <!-- <p class="form-control-static">request</p> -->
+                                    </div>
+                                </div>
+                            </fieldset>
                             <!--E:连通性配置-->
                             <!-- <div class="form-group">
                                 <label for="code" class="col-sm-2 control-label">用例代码</label>
