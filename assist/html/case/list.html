@@ -23,8 +23,8 @@
         </nav>
         <div class="container">
             <ol class="breadcrumb">
-                <li><a href="#">QQ项目1</a></li>
-                <li class="active">用例列表</li>
+                <li><a href="#">所有项目</a></li>
+                <li class="active">QQ项目1</li>
             </ol>
             <ul class="nav nav-tabs mar-b-15" role="tablist">
                 <li role="presentation" class="active" ><a href="#task" aria-controls="home" role="tab" data-toggle="tab">任务列表</a></li>
@@ -35,32 +35,30 @@
                 <div role="tabpanel" class="tab-pane active" id="task">
                     <div class="panel-group" id="task_group" role="tablist" aria-multiselectable="true">
                         <div class="panel panel-default">
-                            <div class="panel-heading" role="tab" id="task_one">
+                            <div class="panel-heading" role="tab" id="task_heading_1">
                                 <h4 class="panel-title">
-                                    <a role="button" data-toggle="collapse" data-parents="#task_group" href="">
+                                    <a role="button" data-toggle="collapse" data-parents="#task_group" href="#task_collapse_1">
                                         QQ业务1的测试任务
                                     </a>
                                 </h4>
                             </div>
+                            <div class="panel-collapse collapse" id="task_collapse_1" role="tabpanel" aria-labelledby="task_heading_1">
+                                额外企鹅我企鹅问问武器
+                            </div>
                         </div>
                         <div class="panel panel-default">
-                            <div class="panel-heading" role="tab" id="task_one">
+                            <div class="panel-heading" role="tab" id="task_heading_2">
                                 <h4 class="panel-title">
-                                    <a role="button" data-toggle="collapse" data-parents="#task_group" href="">
+                                    <a role="button" data-toggle="collapse" data-parents="#task_group" href="#task_collapse_2">
                                         QQ业务2的测试任务
                                     </a>
                                 </h4>
                             </div>
-                        </div>
-                        <div class="panel panel-default">
-                            <div class="panel-heading" role="tab" id="task_one">
-                                <h4 class="panel-title">
-                                    <a role="button" data-toggle="collapse" data-parents="#task_group" href="">
-                                        QQ业务2的测试任务
-                                    </a>
-                                </h4>
+                            <div class="panel-collapse collapse" id="task_collapse_2" role="tabpanel" aria-labelledby="task_heading_2">
+                                额外企鹅我企鹅问问武器
                             </div>
                         </div>
+                        
                     </div>
                 </div>
                 <div role="tabpanel" class="tab-pane " id="case">
