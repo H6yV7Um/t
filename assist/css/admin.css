@@ -3,3 +3,29 @@ body {
 }
 .mar-l-5 {margin-left: 5px;}
 .mar-l-10 {margin-left: 10px;}
+
+
+.form-fieldset {
+    padding: 10px;
+    border: 1px dashed #ccc;
+    border-radius: 3px;
+    padding-bottom: 0px;
+    margin-bottom: 15px;
+    background: #fafafa;;
+}
+
+legend {
+    margin-bottom: 0px;
+    border: none;
+    font-size: 13px;
+    padding: 3px 10px;
+    background: none;
+    background-color: none;
+    display: inline-block;
+    width: auto;
+    background: #888;
+    color: #fff;
+    border-radius: 2px;
+    font-weight: normal;
+    box-shadow: 0px 1px 2px #bbb8b8;
+}
