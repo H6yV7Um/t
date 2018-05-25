@@ -15,6 +15,7 @@ const CommonEvent = {
     },
     click : function() {
         $(document.body).on('click','[data-action]',function(evt){
+            evt.stopPropagation();
             let target = $(evt.target);
             let action = target.attr('data-action');
             if ( window.Actions && typeof window.Actions[action] == 'function' ) {

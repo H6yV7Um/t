@@ -64,7 +64,8 @@
                                 <div class="col-sm-10">
                                     <select class="form-control" name="type" data-ui="select" data-modKey="task-config">
                                         <option value="1">UI交互测试</option>
-                                        <option value="2">连通性测试</option>
+                                        <option value="2" selected>连通性测试</option>
+                                        <option value="3">单元测试</option>
                                     </select>
                                 </div>
                             </div>
@@ -79,7 +80,6 @@
                                         </div>    
                                     </div>
                                 </fieldset>
-                                
                             </div>
                             <div data-mod="task-config" data-key="2">
                                 <fieldset class="form-fieldset nest-1">
@@ -146,6 +146,28 @@
                                             </select>
                                             <!-- <p class="form-control-static">request</p> -->
                                         </div>
+                                    </div>
+                                </fieldset>
+                            </div>
+                            <div data-mod="task-config" data-key="3">
+                                <fieldset class="form-fieldset nest-1">
+                                    <legend>框架配置</legend>
+                                    <div class="form-group">
+                                        <label for="code" class="col-sm-2 control-label">测试框架</label>
+                                        <div class="col-sm-10" >
+                                            <select class="form-control" name="type">
+                                                <option value="1">mocha</option>
+                                            </select>
+                                        </div>    
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="code" class="col-sm-2 control-label">断言库</label>
+                                        <div class="col-sm-10" >
+                                            <select class="form-control" name="type">
+                                                <option value="1">asset</option>
+                                                <option value="1">chai</option>
+                                            </select>
+                                        </div>    
                                     </div>
                                 </fieldset>
                             </div>
