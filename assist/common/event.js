@@ -16,10 +16,10 @@ const CommonEvent = {
     click : function() {
         $(document.body).on('click','[data-action]',function(evt){
             evt.stopPropagation();
-            let target = $(evt.target);
+            let target = $(evt.currentTarget);
             let action = target.attr('data-action');
             if ( window.Actions && typeof window.Actions[action] == 'function' ) {
-                window.Actions[action].call(this,evt,$(evt.target));
+                window.Actions[action].call(this,evt,$(evt.currentTarget));
             }
         });
     },

@@ -7,7 +7,13 @@ window.Actions = {
             title : `测试用例1详情`
         });
         dialog.updateContent(
-            $(Ui.tmpl(`tmpl_detail`),{})
+            $(Ui.tmpl(`tmpl_detail`,{}))
         )
     }
 }
+
+
+
+$(function () {
+    $('[data-toggle="tooltip"]').tooltip()
+})

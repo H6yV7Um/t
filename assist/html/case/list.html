@@ -33,7 +33,7 @@
             <div class="tab-content">
                 
                 <div role="tabpanel" class="tab-pane active" id="task">
-                    <div class="panel-group" id="task_group" role="tablist" aria-multiselectable="true">
+                    <!-- <div class="panel-group" id="task_group" role="tablist" aria-multiselectable="true">
                         <div class="panel panel-default">
                             <div class="panel-heading" role="tab" id="task_heading_1">
                                 <h4 class="panel-title">
@@ -42,7 +42,7 @@
                                     </a>
                                 </h4>
                             </div>
-                            <div class="panel-collapse collapse" id="task_collapse_1" role="tabpanel" aria-labelledby="task_heading_1">
+                            <div class="panel-collapse panel-body collapse" id="task_collapse_1" role="tabpanel" aria-labelledby="task_heading_1">
                                 额外企鹅我企鹅问问武器
                             </div>
                         </div>
@@ -59,9 +59,111 @@
                             </div>
                         </div>
                         
+                    </div> -->
+                    <div class="well well-sm clearfix">
+                        <div class="pull-right">
+                           <!-- Small button group -->
+                            <div class="btn-group">
+                                <button class="btn btn-default btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    添加测试任务 <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><a href="../task/add.html">UI交互测试类型</a></li>
+                                    <li><a href="../task/add.html">连通性测试类型</a></li>
+                                    <li><a href="../task/add.html">单元测试类型</a></li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
+                    <ul class="list-group hover">
+                        <li class="list-group-item">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <span>QQ业务1的连通性测试</span>
+                                </div>
+                                <div class="col-md-3">
+                                    bc4b2a76b9719d91
+                                    <i class="glyphicon glyphicon-info-sign text-muted" data-toggle="tooltip" data-placement="right" title="任务测试的ID:bc4b2a76b9719d91"></i>
+                                </div>
+                                <div class="col-md-3 text-muted">
+                                    <span>
+                                        用例数：<span class="badge">12</span>
+                                    </span>
+                                </div>
+                                <div class="col-md-3">
+                                    <input class="mui-switch mui-switch-xs mui-switch-anim" type="checkbox">
+                                </div>
+                            </div>
+                        </li>
+                        <li class="list-group-item">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <span>QQ业务1的连通性测试</span>
+                                </div>
+                                <div class="col-md-3">
+                                    bc4b2a76b9719d91
+                                    <i class="glyphicon glyphicon-info-sign text-muted" data-toggle="tooltip" data-placement="right" title="任务测试的ID:bc4b2a76b9719d91"></i>
+                                </div>
+                                <div class="col-md-3 text-muted">
+                                    <span>
+                                        用例数：<span class="badge">12</span>
+                                    </span>
+                                </div>
+                                <div class="col-md-3">
+                                    <input class="mui-switch mui-switch-xs mui-switch-anim" type="checkbox">
+                                </div>
+                            </div>
+                        </li>
+                        <li class="list-group-item">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <span>QQ业务1的连通性测试</span>
+                                </div>
+                                <div class="col-md-3">
+                                    bc4b2a76b9719d91
+                                    <i class="glyphicon glyphicon-info-sign text-muted" data-toggle="tooltip" data-placement="right" title="任务测试的ID:bc4b2a76b9719d91"></i>
+                                </div>
+                                <div class="col-md-3 text-muted">
+                                    <span>
+                                        用例数：<span class="badge">12</span>
+                                    </span>
+                                </div>
+                                <div class="col-md-3">
+                                    <input class="mui-switch mui-switch-xs mui-switch-anim" type="checkbox">
+                                </div>
+                            </div>
+                        </li>
+                        <li class="list-group-item">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <span>QQ业务1的连通性测试</span>
+                                </div>
+                                <div class="col-md-3">
+                                    bc4b2a76b9719d91
+                                    <i class="glyphicon glyphicon-info-sign text-muted" data-toggle="tooltip" data-placement="right" title="任务测试的ID:bc4b2a76b9719d91"></i>
+                                </div>
+                                <div class="col-md-3 text-muted">
+                                    <span>
+                                        用例数：<span class="badge">12</span>
+                                    </span>
+                                </div>
+                                <div class="col-md-3">
+                                    <input class="mui-switch mui-switch-xs mui-switch-anim" type="checkbox">
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                    
                 </div>
                 <div role="tabpanel" class="tab-pane " id="case">
+                    <div class="well well-sm clearfix">
+                        <div class="pull-right">
+                            <!-- Small button group -->
+                            <div class="btn-group">
+                                <a href="./add.html" class="btn btn-default btn-sm" type="button" >添加用例 </a>                              
+                            </div>
+                        </div>
+                    </div>
                     <table class="table table-striped">
                         <thead>
                             <tr>
@@ -138,6 +240,22 @@
                                 </td>
                             </tr>
                             <tr>
+                                <td>TEST_01</td>
+                                <td>QQ项目1</td>
+                                <td>CK.Ming</td>
+                                <td>
+                                    <span class="label-info label">单元测试</span>
+                                </td>
+                                <td>
+                                    <button type="button" class="btn btn-black btn-xs" title="编辑">
+                                        <i class="glyphicon glyphicon-pencil"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-default btn-xs" title="详情">
+                                        <i class="glyphicon glyphicon-list-alt"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr>
                                 <td>TEST_02</td>
                                 <td>QQ项目1</td>
                                 <td>CK.Ming</td>
@@ -177,12 +295,39 @@
         </div>
         <script type="template/javascript" id="tmpl_detail">
             <form class="form-horizontal">
-                <fieldset class="form-fieldset">
+                <fieldset class="form-fieldset group-gap-sm">
                     <legend>基础配置</legend>
                     <div class="form-group">
-                        <label for="type" class="col-sm-2 control-label">所属项目</label>
-                        <div class="col-sm-10">
+                        <label for="type" class="col-sm-3 control-label">用例名称</label>
+                        <div class="col-sm-9">
+                            <p class="form-control-static">测试用例1</p>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="type" class="col-sm-3 control-label">用例描述</label>
+                        <div class="col-sm-9">
+                            <p class="form-control-static">这里是一个用例的描述，可以没有任务东西</p>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="type" class="col-sm-3 control-label">所属项目</label>
+                        <div class="col-sm-9">
                             <p class="form-control-static">QQ项目1</p>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="type" class="col-sm-3 control-label">用例创建人</label>
+                        <div class="col-sm-9">
+                            <p class="form-control-static">CK.Ming</p>
+                        </div>
+                    </div>
+                </fieldset>
+                <fieldset class="form-fieldset group-gap-sm">
+                    <legend>用例配置</legend>
+                    <div class="form-group">
+                        <label for="type" class="col-sm-3 control-label">用例类型</label>
+                        <div class="col-sm-9">
+                            <p class="form-control-static">连通性测试</p>
                         </div>
                     </div>
                 </fieldset>

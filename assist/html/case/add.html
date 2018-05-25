@@ -29,12 +29,9 @@
                         <fieldset class="form-fieldset">
                             <legend>基础配置</legend>
                             <div class="form-group">
-                                <label for="type" class="col-sm-2 control-label">所属项目</label>
+                                <label for="name" class="col-sm-2 control-label">用例名称</label>
                                 <div class="col-sm-10">
-                                    <select class="form-control" name="type">
-                                        <option value="1">A业务</option>
-                                        <option value="1">B业务</option>
-                                    </select>
+                                    <input type="name" class="form-control" id="name" placeholder="输入用例名称，最长16个字符">
                                 </div>
                             </div>
                             <div class="form-group">
@@ -44,11 +41,15 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="name" class="col-sm-2 control-label">用例名称</label>
+                                <label for="type" class="col-sm-2 control-label">所属项目</label>
                                 <div class="col-sm-10">
-                                    <input type="name" class="form-control" id="name" placeholder="输入用例名称，最长16个字符">
+                                    <select class="form-control" name="type">
+                                        <option value="1">A业务</option>
+                                        <option value="1">B业务</option>
+                                    </select>
                                 </div>
                             </div>
+                            
                             <div class="form-group">
                                 <label for="owner" class="col-sm-2 control-label">创建人</label>
                                 <div class="col-sm-10">
