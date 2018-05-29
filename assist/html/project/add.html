@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width,initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
         <meta name="format-detection" content="telephone=no">
-        <title>用例-添加</title>
+        <title>项目-添加</title>
         <link rel="stylesheet" href="../../deps/bootstrap/css/bootstrap.css">
         <link rel="stylesheet" href="../../css/admin.css">
         <link rel="stylesheet" href="../../deps/codemirror/lib/codemirror.css">
@@ -23,48 +23,25 @@
         </nav>
         <div class="container">
             <div class="panel panel-default">
-                <div class="panel-heading">添加任务</div>
+                <div class="panel-heading">添加项目</div>
                 <div class="panel-body">
                     <form class="form-horizontal">
 
                         <fieldset class="form-fieldset">
-                            <legend>用例配置</legend>
+                            <legend>项目配置</legend>
                             <div class="form-group">
-                                <label for="type" class="col-sm-2 control-label">任务类型</label>
+                                <label for="type" class="col-sm-2 control-label">项目名称</label>
                                 <div class="col-sm-10">
-                                    <p class="form-control-static">连通性测试</p>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="type" class="col-sm-2 control-label">任务名称</label>
-                                <div class="col-sm-10">
-                                    <input type="url" class="form-control" id="name" placeholder="请输入任务名称">
+                                    <input type="url" class="form-control" id="name" placeholder="请输入项目名称">
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="type" class="col-sm-2 control-label">负责人</label>
+                                <label for="type" class="col-sm-2 control-label">项目描述</label>
                                 <div class="col-sm-10">
-                                    <input type="url" class="form-control" id="owner" placeholder="请输入任务名称" value="CK.Ming">
+                                    <input type="url" class="form-control" id="desc" placeholder="请输入项目描述" value="">
                                 </div>
                             </div>
-                            <div>
-                                <div class="form-group">
-                                    <label class="col-sm-2 control-label">选择用例</label>
-                                    <div class="col-sm-10">
-                                        <select multiple class="form-control">
-                                            <option value="1">用例1</option>
-                                            <option value="2">用例2</option>
-                                            <option value="3">用例3</option>
-                                            <option value="4">用例4</option>
-                                            <option value="5">用例5</option>
-                                            <option value="6">用例6</option>
-                                            <option value="7">用例7</option>
-                                            <option value="8">用例8</option>
-                                            <option value="9">用例9</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
+                            
                            
                         </fieldset>
                     </form>
