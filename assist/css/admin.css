@@ -45,6 +45,21 @@ body {
     cursor: pointer;
 }
 
+.caption .edit-btn {
+    display: none;
+}
+.caption:hover .edit-btn {
+    display: inline-block;
+}
+
+.over-ellipsis {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: inherit;
+    max-width: 100%;
+}
+
 /*
  * switch button
  */
