@@ -46,7 +46,10 @@ body {
  * switch button
  */
  .mui-switch {
-    outline: 0px;
+     margin-top: 0px !important;
+     outline: 0 !important;
+     cursor: pointer;
+    
     width: 52px;
     height: 31px;
     position: relative;
