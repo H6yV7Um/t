@@ -3,15 +3,14 @@ const request = require('request');
 /**
  * config
  */
-const url = 'https://h5.qianbao.qq.com/jifen?debug=1'
+const url = 'http://www.qq.com?debug=1'
 const opts = {
     method  : `GET`,
     cookie  : {
        
     },
     proxy : {
-        host  : `127.0.0.1`,
-        point : 80
+       
     }
 }
 
@@ -37,14 +36,18 @@ function getAgent(name) {
 
 
 function formatParams(url,opts) {
-    return {
+    let res = {
         url : url,
         method : opts.method,
         headers : {
             "cookie" : stringify(opts.cookie,';'),
-            "user-agent" : getAgent(opts.userAgent)
+            "user-agent" : getAgent(opts.userAgent),
         }
     }
+    if ( opts.proxy ) {
+        res.proxy = `http://${opts.proxy.host}:${opts.proxy.port ? opts.proxy.port : '80'}`
+    }
+    return res;
 }
 
 
@@ -63,18 +66,20 @@ function run(url,opts) {
                 });
             } else {
                 const headers = responese.headers;
-                const statusCode = respone.statusCode;
+                const statusCode = responese.statusCode;
                 if ( statusCode == 200 ) {
                     resolve({
                         params : params,
                         time : time,
-                        statusCode : statusCode
+                        statusCode : statusCode,
+                        body : body
                     });
                 } else {
                     reject({
                         params : params,
                         time : time,
-                        statusCode : statusCode
+                        statusCode : statusCode,
+                        body : body
                     })
                 }
             }
@@ -84,7 +89,7 @@ function run(url,opts) {
 
 run(url,opts)
     .then((res) => {
-        
-    }).catch((res) => {
-
+        console.log(`success`,res);
+    }).catch((error) => {
+        console.log(`error`,error);
     })
