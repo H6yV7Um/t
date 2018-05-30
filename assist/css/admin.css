@@ -243,6 +243,10 @@ legend {
 } 
 
 
+.bg-gray {
+    background-color: #ececec;
+}
+
 
 /*
  * switch button

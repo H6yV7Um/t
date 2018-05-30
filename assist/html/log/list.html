@@ -41,7 +41,7 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td>2018-05-30 10:20:30</td>
+                            <td><span class="label label-danger mar-r-5">new</span>2018-05-30 10:20:30</td>
                             <td>CK.Ming</td>
                             <td>20s</td>
                             <td>
@@ -118,8 +118,17 @@
         <script type="template/javascript" id="tmpl_log_detail">
            
             <table class="table table-striped">
+                <colgroup>
+                    <col width="2%" />
+                    <col width="20%" />
+                    <col width="20%" />
+                    <col width="20%" />
+                    <col width="20%" />
+                    <col width="18%" />
+                </colgroup>
                 <thead>
                     <tr>
+                        <th></th>
                         <th>执行用例</th>
                         <th>开始时间</th>
                         <th>结束时间</th>
@@ -129,6 +138,9 @@
                 </thead>
                 <tbody>
                     <tr>
+                        <td>
+                            <i class="glyphicon glyphicon-menu-down"></i>
+                        </td>
                         <td>连通性测试用例1</td>
                         <td>2018-05-30 12:30:20</td>
                         <td>2018-05-30 12:30:23</td>
@@ -138,7 +150,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td colspan="99">
+                        <td colspan="99" class="bg-gray">
                             <div class="panel panel-default">
                                 <div class="panel-heading">后台日志</div>
                                 <div class="panel-body">
@@ -163,6 +175,9 @@
                         </td>
                     </tr>
                     <tr>
+                        <td>
+                            <i class="glyphicon glyphicon-menu-right"></i>
+                        </td>
                         <td>连通性测试用例1</td>
                         <td>2018-05-30 12:30:20</td>
                         <td>2018-05-30 12:30:23</td>
