@@ -1,0 +1,185 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+        <meta name="format-detection" content="telephone=no">
+        <title>日志-列表</title>
+        <link rel="stylesheet" href="../../deps/bootstrap/css/bootstrap.css">
+        <link rel="stylesheet" href="../../css/admin.css">
+        <link rel="stylesheet" href="../../deps/codemirror/lib/codemirror.css">
+        <link rel="stylesheet" href="../../deps/codemirror/theme/panda-syntax.css">
+        <script src="../../deps/codemirror/lib/codemirror.js"></script>
+        <script src="../../deps/codemirror/mode/javascript/javascript.js"></script>
+        <script src="../../deps/jquery/jquery-3.3.1.js"></script>
+    </head>
+    <body>
+        <nav class="navbar  navbar-default">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a href="#" class="navbar-brand">MOGGY TEST</a>
+                </div>
+            </div>
+        </nav>
+        <div class="container">
+            <ol class="breadcrumb">
+                <li><a href="../project/list.html">所有项目</a></li>
+                <li><a href="../case/list.html">QQ项目1</a></li>
+                <li class="active">【QQ业务1的连通性测试】执行日志</li>
+            </ol>
+            
+            <div class="tab-content">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>执行时间</th>
+                            <th>执行人</th>
+                            <th>执行总耗时</th>
+                            <th>执行结果</th>
+                            <th>执行详情</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>2018-05-30 10:20:30</td>
+                            <td>CK.Ming</td>
+                            <td>20s</td>
+                            <td>
+                                <span class="label label-success">成功</span>
+                            </td>
+                            <td>
+                                <a type="button" class="btn btn-default btn-xs" title="查看执行详情" data-toggle="tooltip" data-placement="top" data-action="detail">
+                                    <i class="glyphicon glyphicon-align-justify"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>2018-05-30 10:20:30</td>
+                            <td>CK.Ming</td>
+                            <td>20s</td>
+                            <td>
+                                <span class="label label-success">成功</span>
+                            </td>
+                            <td>
+                                <a type="button" class="btn btn-default btn-xs" title="查看执行详情" data-toggle="tooltip" data-placement="top" >
+                                    <i class="glyphicon glyphicon-align-justify"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>2018-05-30 10:20:30</td>
+                            <td>CK.Ming</td>
+                            <td>20s</td>
+                            <td>
+                                <span class="label label-success">成功</span>
+                            </td>
+                            <td>
+                                <a type="button" class="btn btn-default btn-xs" title="查看执行详情" data-toggle="tooltip" data-placement="top" >
+                                    <i class="glyphicon glyphicon-align-justify"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                           <td colspan="99" >
+                                <ul class="pagination pagination-xs pull-right">
+                                    <li class="disabled">
+                                        <a href="#">
+                                            <span aria-hidden="true">&laquo;</span>
+                                        </a>
+                                    </li>
+                                    <li class="active">
+                                        <a href="#">1</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">2</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">3</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <span>&raquo;</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                           </td>
+                        </tr>
+                    </tfoot>
+                    <tfoot>
+
+                    </tfoot>
+                </table>
+                
+            </div>
+            
+        </div>
+        <script type="template/javascript" id="tmpl_log_detail">
+           
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>执行用例</th>
+                        <th>开始时间</th>
+                        <th>结束时间</th>
+                        <th>执行耗时</th>
+                        <th>执行结果</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>连通性测试用例1</td>
+                        <td>2018-05-30 12:30:20</td>
+                        <td>2018-05-30 12:30:23</td>
+                        <td>3s</td>
+                        <td>
+                            <span class="label label-success">成功</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="99">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">后台日志</div>
+                                <div class="panel-body">
+                                    <p>log %c[ACT]:task background-color:green; color:white; padding: 2px </p>
+                                    <p>log %c[ACT]:task background-color:green; color:white; padding: 2px </p>
+                                    <p>log %c[ACT]:task background-color:green; color:white; padding: 2px </p>
+                                    <p>log %c[ACT]:task background-color:green; color:white; padding: 2px </p>
+                                    <p>log %c[ACT]:task background-color:green; color:white; padding: 2px </p>
+                                    <p>log %c[ACT]:task background-color:green; color:white; padding: 2px </p>
+                                    <p>log %c[ACT]:task background-color:green; color:white; padding: 2px </p>
+                                    <p>log %c[ACT]:task background-color:green; color:white; padding: 2px </p>
+                                    <p>log %c[ACT]:task background-color:green; color:white; padding: 2px </p>
+                                    <p>log %c[ACT]:task background-color:green; color:white; padding: 2px </p>
+                                    <p>log %c[ACT]:task background-color:green; color:white; padding: 2px </p>
+                                    <p>log %c[ACT]:task background-color:green; color:white; padding: 2px </p>
+                                    <p>log %c[ACT]:task background-color:green; color:white; padding: 2px </p>
+                                    <p>log %c[ACT]:task background-color:green; color:white; padding: 2px </p>
+                                    <p>log %c[ACT]:task background-color:green; color:white; padding: 2px </p>
+                                    <p>log %c[ACT]:task background-color:green; color:white; padding: 2px </p>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>连通性测试用例1</td>
+                        <td>2018-05-30 12:30:20</td>
+                        <td>2018-05-30 12:30:23</td>
+                        <td>3s</td>
+                        <td>
+                            <span class="label label-danger">失败</span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </script>
+       
+        <script src="../../deps/bootstrap/js/bootstrap.min.js"></script>
+        <script src="../../common/event.js"></script>
+        <script src="../../common/ui.js"></script>
+        <script src="../../common/form.js"></script>
+        <script src="./list.js"></script>
+
+    </body>
+</html>

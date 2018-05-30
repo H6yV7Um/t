@@ -72,7 +72,8 @@ const Ui = {
                 text : `关闭`
             }],
             onInit  : opts.onInit  || function(){},
-            onClick : opts.onClick || function(){}
+            onClick : opts.onClick || function(){},
+            fullScreen : opts.fullScreen || false
         }
         this.target = null;
         this.opts.button.forEach((item,index) => {
@@ -87,7 +88,7 @@ const Ui = {
     }
     Dialog.prototype = {
         template : 
-            `<div class="modal-box">\
+            `<div class="modal-box <% if (opts.fullScreen) { %>modal-fullscreen modal-body-fixed<% } %> ">\
                 <div class="modal fade" data-ui="modal">\
                     <div class="modal-dialog">\
                         <div class="modal-content">\
@@ -97,7 +98,9 @@ const Ui = {
                                 </button>\
                                 <h4 class="modal-title"><%=opts.title %></h4>\
                             </div>\
-                            <div class="modal-body" data-ui="content">\
+                            <div class="modal-body">\
+                                <div class="modal-body-content"  data-ui="content">\
+                                </div>\
                             </div>\
                             <% if ( opts.button.length > 0 ) { %>\
                             <div class="modal-footer">\
