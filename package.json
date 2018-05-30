@@ -5,13 +5,10 @@
   "main": "index.js",
   "dependencies": {
     "@tencent/mg-validator": "^1.0.1",
-    "request": "^2.87.0"
+    "request": "^2.87.0",
+    "vue": "^2.5.16"
   },
-  "devDependencies": {
-    "gulp": "^3.9.1",
-    "gulp-rollup-each": "^2.1.0",
-    "rollup": "^0.59.4"
-  },
+  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "node ./node_modules/gulp/bin/gulp.js rollup"
