@@ -52,15 +52,25 @@
                 members: ""
             }
         },
-        created() {
-            console.log('creted');
-        },
         mounted() {
+            
+            console.log(this.$router.history.current);
             console.log('mounted')
         },
         methods: {
-            submit() {
-                
+            async submit() {
+                try {
+                    let data = {
+                        name: this.name,
+                        creater: this.creater,
+                        members: this.members
+                    }
+                    await this.$store.dispatch('addProject',data);
+                    alert('添加成功');
+                } catch (e) {
+                    throw e;
+                    alert('添加数据失败')
+                } 
             }
         }
     }

@@ -40,12 +40,12 @@ class Model {
      * @param {string} url 请求的url，不用带baseurl 
      * @param {object} params 请求的参数
      */
-     async _request(method,url,params) {
+    _request(method,url,params) {
         return new Promise((resolve,reject) => {
             params = params ? params : {};
             const req = {
                 url: url,
-                baseURL: '/api',
+                baseURL: 'http://localhost:1337/api',
                 method: method,
                 withCredentials: true,
                 timeout: 10000,
@@ -98,7 +98,7 @@ class Model {
      * 添加新的数据
      * @param {object} record 增加新的数据记录
      */
-    addOne(record) {
+    insert(record) {
         return this._request(
             'POST',
             this._url(),

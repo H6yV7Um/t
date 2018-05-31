@@ -1,4 +1,4 @@
-import project from 'api/project'
+import model from 'api/project'
 
 // 初始状态，组件之间的共享数据
 const state = {
@@ -17,7 +17,8 @@ const mutations = {
 const actions = {
     async addProject({ commit }, project) {
         try {
-            let res = await project.addOne();
+            console.log(project);
+            let res = await model.insert(project);
             commit('add',res.data);
         } catch(e) {
             throw e;
@@ -25,7 +26,7 @@ const actions = {
     },
     async allProjects({ commit }) {
         try {
-            let projects = await project.getByPageNum();
+            let projects = await model.getByPageNum();
             commit('all',projects);
         } catch(e) {
             throw e;

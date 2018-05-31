@@ -47,7 +47,7 @@
             try {
                 await this.$store.dispatch('allProjects');
             } catch (e) {
-                console.log('error',e)
+                alert('获取数据出错');
             } 
         },
         components: { Header }
