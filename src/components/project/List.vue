@@ -13,13 +13,12 @@
                                 <h3>{{ project.name }}
                                     <a href="./add.html" class="glyphicon glyphicon-edit small text-muted edit-btn"></a>
                                 </h3>
-                                <p>创建人：{{ project.owner }}</p>
+                                <p>创建人：{{ project.creater }}</p>
                                 <p class="text-right">
                                     <a type="button" class="btn btn-default" href="../case/list.html">
                                         <i class="more"></i>
                                         ENTER
-                                    </a>
-                                    
+                                    </a>  
                                 </p>
                             </div>
                         </div>
@@ -37,33 +36,13 @@
     
 </template>
 <script>
+    import { mapGetters } from 'Vuex'
     import Header from '../common/Header.vue'
     export default {
         name: 'ProjectList',
-        beforeCreate() {
-            console.log('beforecreate')
-        },
-        created() {
-            console.log('created')
-        },
-        components: { Header },
-        data() {
-            return {
-                projects: [{
-                    id: 1,
-                    name: 'project name',
-                    owner: 'ck.ming'
-                }]
-            }
-        },
-        methods : {
-            create(event) {
-                this.projects.push({
-                    id : 2,
-                    name : 'project name2',
-                    owner : 'ckming'
-                });
-            }
-        }
+        computed: mapGetters({
+            projects: 'getProjects'
+        }),
+        components: { Header }
     }
 </script>
