@@ -6,20 +6,35 @@ const state = {
 }
 
 const mutations = {
-    addProject(state,project) {
+    add(state,project) {
         state.projects.push(project)
+    },
+    all(state,projects) {
+        state.projects = projects;
     }
 }
 
 const actions = {
-    ADD_PROJECT({ commit, state }, project) {
-        commit('addProject', project);
-        console.log('action submit',project);
+    async addProject({ commit }, project) {
+        try {
+            let res = await project.addOne();
+            commit('add',res.data);
+        } catch(e) {
+            throw e;
+        }
+    },
+    async allProjects({ commit }) {
+        try {
+            let projects = await project.getByPageNum();
+            commit('all',projects);
+        } catch(e) {
+            throw e;
+        }
     }
 }
 
 const getters = {
-    getProjects(state,getters,rootState) {
+    projects(state,getters,rootState) {
         return state.projects;
     }
 }

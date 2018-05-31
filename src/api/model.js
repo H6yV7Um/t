@@ -2,6 +2,8 @@ import axios from 'axios'
 
 class Model {
 
+    _PAGECOUNT = 20
+
     /**
      * 构造函数
      * @param {string} params.name 模块名称
@@ -20,12 +22,25 @@ class Model {
     }
 
     /**
+     * 根据页码来获取
+     * @param {number} pagenum [选填]页码，默认是0
+     * @param {nunber} pagecount [选填]每页的个，默认是30
+     */
+    getByPageNum(pagenum,pagecount) {
+        return this._request(
+            'GET',
+            this._url(),
+            {pagenum:pagenum || 0,pagecount:pagecount || this._PAGECOUNT}
+        )
+    }
+
+    /**
      * 请求的方式
      * @param {string} method 请求的方式
      * @param {string} url 请求的url，不用带baseurl 
      * @param {object} params 请求的参数
      */
-    _request(method,url,params) {
+     async _request(method,url,params) {
         return new Promise((resolve,reject) => {
             params = params ? params : {};
             const req = {
@@ -59,7 +74,7 @@ class Model {
      * @param {number} id 数据的id值
      */
     getOneById(id) {
-        return _request(
+        return this._request(
             'GET',
             this._url(),
             {id:id}
@@ -93,6 +108,6 @@ class Model {
 }
 
 
-export default (...args) => {
-    return new Model.call(Model,...args)
+export default function(...args){
+    return new Model(...args)
 }

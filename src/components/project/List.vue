@@ -41,8 +41,15 @@
     export default {
         name: 'ProjectList',
         computed: mapGetters({
-            projects: 'getProjects'
+            projects: 'projects'
         }),
+        async mounted() {
+            try {
+                await this.$store.dispatch('allProjects');
+            } catch (e) {
+                console.log('error',e)
+            } 
+        },
         components: { Header }
     }
 </script>

@@ -41,7 +41,6 @@
     </div>
 </template>
 <script>
-    import { mapActions } from 'Vuex'
     import Header from '../common/Header.vue'
 
     export default {
@@ -53,10 +52,16 @@
                 members: ""
             }
         },
+        created() {
+            console.log('creted');
+        },
+        mounted() {
+            console.log('mounted')
+        },
         methods: {
-            ...mapActions([
-                'ADD_PROJECT'
-            ])
+            submit() {
+                
+            }
         }
     }
 </script>
