@@ -11,20 +11,20 @@
                             <div class="form-group">
                                 <label for="name" class="col-sm-2 control-label">名称</label>
                                 <div class="col-sm-10">
-                                    <input v-model="name" class="form-control" id="name" placeholder="请输入项目名称">
+                                    <input v-model="form.name" class="form-control" id="name" placeholder="请输入项目名称">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="creater" class="col-sm-2 control-label">创建人</label>
                                 <div class="col-sm-10">
-                                    <input type="text" v-model="creater" class="form-control" id="creater" readonly>
+                                    <input type="text" v-model="form.creater" class="form-control" id="creater" readonly>
                                     <!-- <p class="form-control-static">CK.Ming</p> -->
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="type" class="col-sm-2 control-label">成员</label>
                                 <div class="col-sm-10">
-                                    <input type="text" v-model="members" class="form-control" placeholder="多个成员用;隔开">
+                                    <input type="text" v-model="form.members" class="form-control" placeholder="多个成员用;隔开">
                                 </div>
                             </div>
                         </fieldset>
@@ -47,26 +47,35 @@
         components: {Header},
         data() {
             return {
-                name: "",
-                creater: "",
-                members: ""
+                type: 'add',
+                id: 0,
+                form: {}
             }
         },
-        mounted() {
-            
-            console.log(this.$router.history.current);
-            console.log('mounted')
+        async mounted() {
+            try {
+                let params = this.$router.history.current.params;
+                this.type = params.type;
+                this.id = params.id || 0;
+                if (this.type == 'edit') {
+                    let data = await this.$store.dispatch('getProject',this.id)
+                    this.form = data;
+                }
+            } catch(e) {
+                alert('数据获取出错');
+            }
         },
         methods: {
             async submit() {
                 try {
                     let data = {
                         name: this.name,
-                        creater: this.creater,
+                        creater: this.creater || 'anonymous',
                         members: this.members
                     }
                     await this.$store.dispatch('addProject',data);
-                    alert('添加成功');
+                    alert('添加成功')
+                    this.$router.push('/projects')
                 } catch (e) {
                     throw e;
                     alert('添加数据失败')

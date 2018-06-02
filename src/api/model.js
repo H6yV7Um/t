@@ -29,7 +29,7 @@ class Model {
     getByPageNum(pagenum,pagecount) {
         return this._request(
             'GET',
-            this._url(),
+            this._url()+'s',
             {pagenum:pagenum || 0,pagecount:pagecount || this._PAGECOUNT}
         )
     }
@@ -57,11 +57,12 @@ class Model {
             method.toUpperCase() == 'GET' 
                 ? req.params = params 
                 : req.data = params;
-            axios(req).then((res) => {
-                if (res.ret === 0) {
-                    resolve(res.data);
+            axios(req).then((res,body) => {
+                let data = res.data;
+                if (data.ret === 0) {
+                    resolve(data.data);
                 } else {
-                    reject(res);
+                    reject(data);
                 }
             }).catch((error) => {
                 reject(error);
@@ -76,8 +77,7 @@ class Model {
     getOneById(id) {
         return this._request(
             'GET',
-            this._url(),
-            {id:id}
+            this._url()+'/'+id
         )
     }
 

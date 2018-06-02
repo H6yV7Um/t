@@ -11,11 +11,11 @@
                         <div class="thumbnail">
                             <div class="caption">
                                 <h3>{{ project.name }}
-                                    <a href="./add.html" class="glyphicon glyphicon-edit small text-muted edit-btn"></a>
+                                    <a @click="edit(project.id)" class="glyphicon glyphicon-edit small text-muted edit-btn"></a>
                                 </h3>
                                 <p>创建人：{{ project.creater }}</p>
                                 <p class="text-right">
-                                    <a type="button" class="btn btn-default" href="../case/list.html">
+                                    <a type="button" class="btn btn-default" @click="enter(project.id)">
                                         <i class="more"></i>
                                         ENTER
                                     </a>  
@@ -45,11 +45,16 @@
         }),
         async mounted() {
             try {
-                await this.$store.dispatch('allProjects');
+                await this.$store.dispatch('getProjectsByPage');
             } catch (e) {
                 alert('获取数据出错');
             } 
         },
-        components: { Header }
+        components: { Header },
+        methods: {
+            edit(id) {
+                this.$router.push(`/project/edit/${id}`)
+            }
+        }
     }
 </script>

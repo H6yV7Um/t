@@ -20,6 +20,24 @@ module.exports.modify = function(ctx) {
     return {id:body.id,modify:body.modify}
 }
 
-module.exports.get = function(ctx) {
+/**
+ * pagation data struct
+ * @param {context} ctx
+ * @example
+ *      api请求的参数里面带有pagenum、pagecount 
+ */
+module.exports.page = function(ctx) {
+    const query = ctx.request.query;
+    return {pagenum:Number(query.pagenum),pagecount:Number(query.pagecount)}
+}
 
+/**
+ * get one data struct
+ * @param {context} ctx 
+ * @example
+ *      api请求的url里面配置着/:id的链接参数
+ */
+module.exports.getOne = function(ctx) {
+    const params = ctx.params;
+    return {id:Number(params.id)}
 }

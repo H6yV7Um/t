@@ -5,21 +5,37 @@ const paramResolver = require('../util/paramResolver');
 const model = require('../model/project');
 
 module.exports = {
+    async getOne(ctx) {
+        try {
+            let params = paramResolver.getOne(ctx);
+            let data = await model.findOneById(params.id);
+            ctx.body = json.success(data);
+        } catch(jsonError) {
+            ctx.body = jsonError;
+        }
+    },
     async get(ctx) {
-        
+        try {
+            let params = paramResolver.page(ctx);
+            let data = await model.findByPage(params.pagenum,params.pagecount)
+            ctx.body = json.success(data);
+        } catch(e) {
+            console.error(e);
+            ctx.body = json.fail(code.SERVER_ERROR,e);
+        }
     },
     async insert(ctx,next) {
         try {
-            let res = validator.insert(
-                paramResolver.insert(ctx)
-            );
+            let params = paramResolver.insert(ctx)
+            let res = validator.insert(params);
             if (res.ret != code.SUCCESS.code) {
-                ctx.body = json.fail(code.PARAMS_ERROR,res);
+                ctx.body = json.fail(code.PARAMS_ERROR,res.result);
                 return ;
             }
-            let mdRes = await model.insert(res.data);
-            ctx.body = json.success(mdRes.data);
+            let data = await model.insert(params);
+            ctx.body = json.success(data);
         } catch(e) {
+            console.error(e);
             ctx.body = json.fail(code.SERVER_ERROR,e);
         }
     },

@@ -19,12 +19,12 @@ export default new Router({
       component: ProjectList
     },
     {
-      path: '/project/add',
+      path: '/project/:type',
       name: 'ProjectAdd',
       component: ProjectEdit
     },
     {
-      path: '/project/edit',
+      path: '/project/:type/:id',
       name: 'ProjectEdit',
       component: ProjectEdit
     },

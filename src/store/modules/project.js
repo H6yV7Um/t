@@ -2,32 +2,41 @@ import model from 'api/project'
 
 // 初始状态，组件之间的共享数据
 const state = {
-    projects: []
+    projects: [],
+    total: 0
 }
 
 const mutations = {
     add(state,project) {
         state.projects.push(project)
     },
-    all(state,projects) {
-        state.projects = projects;
+    page(state,{total,list}) {
+        state.projects = list;
+        state.total = total;
     }
 }
 
 const actions = {
     async addProject({ commit }, project) {
         try {
-            console.log(project);
             let res = await model.insert(project);
             commit('add',res.data);
         } catch(e) {
             throw e;
         }
     },
-    async allProjects({ commit }) {
+    async getProjectsByPage({ commit }, pagenum) {
         try {
-            let projects = await model.getByPageNum();
-            commit('all',projects);
+            let data = await model.getByPageNum();
+            commit('page',data);
+        } catch(e) {
+            throw e;
+        }
+    },
+    async getProject({ commit }, id) {
+        try {
+            let data = await model.getOneById(id);
+            return data;
         } catch(e) {
             throw e;
         }

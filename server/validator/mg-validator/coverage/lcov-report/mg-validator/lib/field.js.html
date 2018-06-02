@@ -1,0 +1,614 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for mg-validator/lib/field.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../prettify.css" />
+    <link rel="stylesheet" href="../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../index.html">all files</a> / <a href="index.html">mg-validator/lib/</a> field.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">99.08% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>108/109</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">96.55% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>56/58</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>16/16</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">99.08% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>108/109</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line high'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">618×</span>
+<span class="cline-any cline-yes">618×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">618×</span>
+<span class="cline-any cline-yes">618×</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">614×</span>
+<span class="cline-any cline-yes">612×</span>
+<span class="cline-any cline-yes">612×</span>
+<span class="cline-any cline-yes">266×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">346×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">348×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">612×</span>
+<span class="cline-any cline-yes">612×</span>
+<span class="cline-any cline-yes">612×</span>
+<span class="cline-any cline-yes">104×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">508×</span>
+<span class="cline-any cline-yes">372×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">508×</span>
+<span class="cline-any cline-yes">34×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">508×</span>
+<span class="cline-any cline-yes">10×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">508×</span>
+<span class="cline-any cline-yes">508×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">508×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">508×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">346×</span>
+<span class="cline-any cline-yes">346×</span>
+<span class="cline-any cline-yes">242×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">104×</span>
+<span class="cline-any cline-yes">104×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">104×</span>
+<span class="cline-any cline-yes">104×</span>
+<span class="cline-any cline-yes">104×</span>
+<span class="cline-any cline-yes">104×</span>
+<span class="cline-any cline-yes">104×</span>
+<span class="cline-any cline-yes">84×</span>
+<span class="cline-any cline-yes">84×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">20×</span>
+<span class="cline-any cline-yes">20×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">104×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">104×</span>
+<span class="cline-any cline-yes">42×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">62×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">104×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">508×</span>
+<span class="cline-any cline-yes">508×</span>
+<span class="cline-any cline-yes">508×</span>
+<span class="cline-any cline-yes">32×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">476×</span>
+<span class="cline-any cline-yes">32×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">444×</span>
+<span class="cline-any cline-yes">40×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">404×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">508×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">404×</span>
+<span class="cline-any cline-yes">404×</span>
+<span class="cline-any cline-yes">404×</span>
+<span class="cline-any cline-yes">432×</span>
+<span class="cline-any cline-yes">432×</span>
+<span class="cline-any cline-yes">214×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">404×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">32×</span>
+<span class="cline-any cline-yes">32×</span>
+<span class="cline-any cline-yes">32×</span>
+<span class="cline-any cline-yes">60×</span>
+<span class="cline-any cline-yes">60×</span>
+<span class="cline-any cline-yes">16×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">32×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">40×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">32×</span>
+<span class="cline-any cline-yes">32×</span>
+<span class="cline-any cline-yes">32×</span>
+<span class="cline-any cline-yes">68×</span>
+<span class="cline-any cline-yes">68×</span>
+<span class="cline-any cline-yes">16×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">32×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">560×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">618×</span>
+<span class="cline-any cline-yes">618×</span>
+<span class="cline-any cline-yes">618×</span>
+<span class="cline-any cline-yes">610×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">618×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">618×</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">614×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">618×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1228×</span>
+<span class="cline-any cline-yes">1228×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var interface_1 = require("./interface");
+var types_1 = require("./types");
+var compare_1 = require("./compare");
+var validator_1 = require("./validator");
+var Field = /** @class */ (function () {
+    function Field(data) {
+        this.data = data;
+        this.compare = new compare_1.Compare(data);
+    }
+    Field.prototype.verify = function (key, field) {
+        var res = this.verifyOpt(key, field);
+        if (res.ret != validator_1.Validator.SUCCESS) {
+            return res;
+        }
+        if (this.exist(key)) {
+            res = this.verifyType(key, field);
+            if (res.ret != validator_1.Validator.SUCCESS) {
+                return res;
+            }
+            res = this.verifyLength(key, field);
+        }
+        return res;
+    };
+    Field.prototype.verifyType = function (key, field) {
+        var typeRule = field.type;
+        var ret;
+        if (!typeRule) {
+            return validator_1.Validator.output(validator_1.Validator.SUCCESS);
+        }
+        if (typeof typeRule != 'object') {
+            typeRule = {
+                rule: [typeRule],
+                message: field.message
+            };
+        }
+        if (!typeRule.message) {
+            typeRule.message = field.message;
+        }
+        if (typeof typeRule.rule != 'object') {
+            typeRule.rule = [typeRule.rule];
+        }
+        <span class="missing-if-branch" title="else path not taken" >E</span>if (Array.isArray(typeRule.rule)) {
+            ret = this._verifyTypesArr(key, {
+                rule: typeRule.rule,
+                sign: typeRule.sign
+            });
+        }
+        else {
+<span class="cstat-no" title="statement not covered" >            ret = this._verifyTypesArr(key, typeRule.rule);</span>
+        }
+        var data = {
+            dataName: key,
+            value: String(this.data[key]),
+            ruleName: interface_1.IRuleName.TYPE,
+            errMsg: typeRule.message
+        };
+        return validator_1.Validator.output(ret, data);
+    };
+    Field.prototype.verifyLength = function (key, field) {
+        var lengthRule = field.length;
+        if (!lengthRule) {
+            return validator_1.Validator.output(validator_1.Validator.SUCCESS);
+        }
+        <span class="missing-if-branch" title="else path not taken" >E</span>if (typeof lengthRule === 'string') {
+            lengthRule = {
+                rule: lengthRule,
+                message: field.message
+            };
+        }
+        var idx = this.compare.getType(lengthRule.rule);
+        var arr = this.compare.getData(idx, lengthRule.rule);
+        var res = false;
+        var ret;
+        if (arr.length == 1) {
+            arr.unshift(this.data[key].length);
+            res = this.compare.compare(idx.type, arr);
+        }
+        else {
+            var data1 = [arr[0], this.data[key].length], data2 = [this.data[key].length, arr[1]];
+            res = this.compare.compare(2, data1) &amp;&amp; this.compare.compare(2, data2);
+        }
+        var data = {
+            dataName: key,
+            value: String(this.data[key]),
+            ruleName: interface_1.IRuleName.LENGTH,
+            errMsg: lengthRule.message
+        };
+        if (!res) {
+            ret = validator_1.Validator.errCode.ERR_LENGTHERR;
+        }
+        else {
+            ret = validator_1.Validator.SUCCESS;
+        }
+        return validator_1.Validator.output(ret, data);
+    };
+    Field.prototype._verifyTypesArr = function (key, typeRule) {
+        var ret;
+        var sign = typeRule.sign;
+        if (sign &amp;&amp; sign === 'or') {
+            ret = this._verifyOr(key, typeRule.rule);
+        }
+        else if (sign &amp;&amp; sign === 'not') {
+            ret = this._verifyNot(key, typeRule.rule);
+        }
+        else if (sign &amp;&amp; sign === 'datetime') {
+            ret = this._verifyDate(key, typeRule.rule);
+        }
+        else {
+            ret = this._verifyAnd(key, typeRule.rule);
+        }
+        return ret ? validator_1.Validator.SUCCESS : validator_1.Validator.errCode.ERR_TYPEERR;
+    };
+    Field.prototype._verifyAnd = function (key, rules) {
+        var _this = this;
+        var res = true;
+        rules.forEach(function (rule) {
+            var ret = _this._verifyType(_this.data[key], rule);
+            if (!ret) {
+                res = false;
+            }
+        });
+        return res;
+    };
+    Field.prototype._verifyOr = function (key, rules) {
+        var _this = this;
+        var res = false;
+        rules.forEach(function (rule) {
+            var ret = _this._verifyType(_this.data[key], rule);
+            if (ret) {
+                res = true;
+            }
+        });
+        return res;
+    };
+    Field.prototype._verifyDate = function (key, rules) {
+        return types_1.Datetime.isValid(rules[0], this.data[key]);
+    };
+    Field.prototype._verifyNot = function (key, rules) {
+        var _this = this;
+        var res = true;
+        rules.forEach(function (rule) {
+            var ret = _this._verifyType(_this.data[key], rule);
+            if (ret) {
+                res = false;
+            }
+        });
+        return res;
+    };
+    Field.prototype._verifyType = function (val, rule) {
+        return rule(val);
+    };
+    Field.prototype.verifyOpt = function (key, field) {
+        var optionalRule = field.optional || false;
+        var ret;
+        if (typeof optionalRule === 'boolean') {
+            optionalRule = {
+                rule: optionalRule,
+                message: field.message
+            };
+        }
+        var data = {
+            dataName: key,
+            value: null,
+            ruleName: interface_1.IRuleName.OPTIONAL,
+            errMsg: optionalRule.message
+        };
+        if (!optionalRule.rule &amp;&amp; !this.exist(key)) {
+            ret = validator_1.Validator.errCode.ERR_NOT_EXIST;
+        }
+        else {
+            ret = validator_1.Validator.SUCCESS;
+        }
+        return validator_1.Validator.output(ret, data);
+    };
+    Field.prototype.exist = function (key) {
+        var data = this.data;
+        return (data != null) &amp;&amp; data.hasOwnProperty(key) ? true : false;
+    };
+    return Field;
+}());
+exports.Field = Field;
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Thu Mar 22 2018 11:09:30 GMT+0000 (Local time zone must be set--see zic manual page)
+</div>
+</div>
+<script src="../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../sorter.js"></script>
+</body>
+</html>
