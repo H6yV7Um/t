@@ -138,32 +138,6 @@ Mysql.prototype.query = async function(sql) {
     })
 }
 
-/**
- * 按照分页来查询数据
- * @param {number} pagenum 第几页的值
- * @param {number} pagecount 一页多少条数据
- */
-Mysql.prototype.findByPage = async function(pagenum,pagecount) {
-    try {
-        let sql = this.SQL.selectByPage(
-            this.table,
-            pagenum,
-            pagecount,
-            {desc:this.primaryKey}
-        );
-        let res = await this.query(sql);
-        let sqlCount = this.SQL.totalCount(
-            this.table
-        )
-        let resTotal = await this.query(sqlCount);
-        return {
-            list: this.Format.convertResultForWeb(res.results,res.fields).results,
-            total: resTotal.results[0].total
-        }
-    } catch (jsonError) {
-        throw jsonError;
-    }
-}
 
 /**
  * 插入数据，成功后返回插入数据的insertId
@@ -198,5 +172,42 @@ Mysql.prototype.findOneById = async function(id) {
     }
 }
 
+/**
+ * 按照分页来查询数据
+ * @param {number} pagenum 第几页的值
+ * @param {number} pagecount 一页多少条数据
+ */
+Mysql.prototype.findByPage = async function(pagenum,pagecount) {
+    try {
+        let sql = this.SQL.selectByPage(
+            this.table,
+            pagenum,
+            pagecount,
+            {desc:this.primaryKey}
+        );
+        let res = await this.query(sql);
+        let sqlCount = this.SQL.totalCount(
+            this.table
+        )
+        let resTotal = await this.query(sqlCount);
+        return {
+            list: this.Format.convertResultForWeb(res.results,res.fields).results,
+            total: resTotal.results[0].total
+        }
+    } catch (jsonError) {
+        throw jsonError;
+    }
+}
+
+/**
+ * 按照某种条件查询
+ * @param {object} params 参数
+ * @param {object|null} params.page 可选,{index:当前页面数,count:要获取一页的数}
+ * @param {object|null} params.where 可选,{aon:'AND'/'OR'/'NOT',rules:{key:value}}
+ * @param {object|null} params.orderby 可选,{field:`pid`,desc:true/false}
+ */
+Mysql.prototype.findList = async function(params) {
+    
+}
 
 module.exports = Mysql;

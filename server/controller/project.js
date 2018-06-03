@@ -16,10 +16,10 @@ module.exports = {
             ctx.body = jsonError;
         }
     },
-    async get(ctx) {
+    async getList(ctx) {
         try {
-            let params = paramResolver.page(ctx);
-            let data = await model.findByPage(params.pagenum,params.pagecount)
+            let params = paramResolver.getList(ctx);
+            let data = await model.findList(params);
             ctx.body = json.success(data);
         } catch(jsonError) {
             logger.error(jsonError)

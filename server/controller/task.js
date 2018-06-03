@@ -4,7 +4,7 @@ const paramResolver = require('../util/paramResolver')
 const logger = require('../util/logger')
 
 module.exports = {
-    async getByPid(ctx) {
+    async getList(ctx) {
         try {
             let params = paramResolver.getByFields(ctx);
             let data = await model.findByFields(params);
