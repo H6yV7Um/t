@@ -1,8 +1,9 @@
 const json = require('../util/json');
 const code = require('../util/code');
 const validator = require('../validator/project');
-const paramResolver = require('../util/paramResolver');
-const model = require('../model/project');
+const paramResolver = require('../util/paramResolver')
+const model = require('../model/project')
+const logger = require('../util/logger')
 
 module.exports = {
     async getOne(ctx) {
@@ -11,6 +12,7 @@ module.exports = {
             let data = await model.findOneById(params.id);
             ctx.body = json.success(data);
         } catch(jsonError) {
+            logger.error(jsonError)
             ctx.body = jsonError;
         }
     },
@@ -19,9 +21,9 @@ module.exports = {
             let params = paramResolver.page(ctx);
             let data = await model.findByPage(params.pagenum,params.pagecount)
             ctx.body = json.success(data);
-        } catch(e) {
-            console.error(e);
-            ctx.body = json.fail(code.SERVER_ERROR,e);
+        } catch(jsonError) {
+            logger.error(jsonError)
+            ctx.body = jsonError;
         }
     },
     async insert(ctx,next) {
@@ -34,9 +36,9 @@ module.exports = {
             }
             let data = await model.insert(params);
             ctx.body = json.success(data);
-        } catch(e) {
-            console.error(e);
-            ctx.body = json.fail(code.SERVER_ERROR,e);
+        } catch(jsonError) {
+            logger.error(jsonError)
+            ctx.body = jsonError
         }
     },
     async modify(ctx) {

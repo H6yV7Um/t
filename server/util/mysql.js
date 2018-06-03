@@ -157,8 +157,8 @@ Mysql.prototype.findByPage = async function(pagenum,pagecount) {
         )
         let resTotal = await this.query(sqlCount);
         return {
-            list: this.Format.convertResultForWeb(res.results,res.fields),
-            total: resTotal.result[0].total
+            list: this.Format.convertResultForWeb(res.results,res.fields).results,
+            total: resTotal.results[0].total
         }
     } catch (jsonError) {
         throw jsonError;

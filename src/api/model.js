@@ -22,6 +22,22 @@ class Model {
     }
 
     /**
+     * 根据指定的字段值来判断
+     * @param {object} fields 根据指定的字段值来select
+     * @param {string} andOr 与或操作
+     */
+    getByFields(fields, andOr = `AND`) {
+        if (andOr == 'OR') {
+            andOr = 'OR'
+        }
+        return this._request(
+            'GET',
+            this._url()+'s',
+            {fields:fields,andOr:andOr}
+        )
+    }
+
+    /**
      * 根据页码来获取
      * @param {number} pagenum [选填]页码，默认是0
      * @param {nunber} pagecount [选填]每页的个，默认是30

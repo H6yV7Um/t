@@ -1,7 +1,6 @@
 import model from './model'
 
 export default model({
-    name: 'project',
+    name: 'task',
     primaryKey: 'id'
 });
-

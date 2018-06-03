@@ -3,7 +3,7 @@
         <Header />
         <div class="container">
             <div class="well well-sm clearfix text-right">
-                <router-link class="btn btn-default btn-sm" to="/project/add">添加项目</router-link>
+                <router-link class="btn btn-default btn-sm" to="/add/project">添加项目</router-link>
            </div>
             <div>
                 <div class="row" v-if=" projects.length > 0 ">
@@ -11,14 +11,13 @@
                         <div class="thumbnail">
                             <div class="caption">
                                 <h3>{{ project.name }}
-                                    <a @click="edit(project.id)" class="glyphicon glyphicon-edit small text-muted edit-btn"></a>
+                                    <router-link class="glyphicon glyphicon-edit small text-muted edit-btn" :to="'/edit/project/'+project.id"></router-link>
                                 </h3>
                                 <p>创建人：{{ project.creater }}</p>
                                 <p class="text-right">
-                                    <a type="button" class="btn btn-default" @click="enter(project.id)">
-                                        <i class="more"></i>
+                                    <router-link class="btn btn-default" :to="`/project/${project.id}`">
                                         ENTER
-                                    </a>  
+                                    </router-link>  
                                 </p>
                             </div>
                         </div>
@@ -52,9 +51,7 @@
         },
         components: { Header },
         methods: {
-            edit(id) {
-                this.$router.push(`/project/edit/${id}`)
-            }
+           
         }
     }
 </script>
