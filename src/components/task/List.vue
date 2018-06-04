@@ -198,16 +198,20 @@
     export default {
         data() {
             return {
-                id: 0,
-                list: []
+                pid: 0,
+                list: [],
+                total: 0
             }
         },
         async mounted() {
             try {
                 let params = this.$router.history.current.params;
-                this.id = params.id || 0
-                this.list = await this.$store.dispatch('getTasksByPid',this.id)
+                this.pid = params.id || 0
+                let res = await this.$store.dispatch('getTasksByPid',this.pid)
+                this.total = res.total;
+                this.list = res.list;
             } catch(e) {
+                console.error(e);
                 alert('获取数据出错')
             }
         }

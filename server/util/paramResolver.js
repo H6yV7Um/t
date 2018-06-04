@@ -23,23 +23,29 @@ module.exports.modify = function(ctx) {
 /**
  * pagation data struct
  * @param {context} ctx
+ * @returns {object} {index:0/x,count:20/x}
  * @example
  *      { page: {index:2,count:20} }
  */
 module.exports.page = function(ctx) {
-    const query = ctx.request.query;
-    return query.page ? {index:Number(query.page.index),count:Number(query.page.count)} : null;
+    const select = getSelectParams(ctx);
+    const page = select.page || {}
+    return {
+        index: page.index ? Number(page.index) : 0,
+        count: page.count ? Number(page.count) : 20
+    }
 }
 
 /**
  * where data struct
  * @param {context} ctx
+ * @returns {object|null} {aon:'AND',rules:object}|null
  * @example
  *      { where: { aon:'AND', rules:{pid:2} }
  */
 module.exports.where = function(ctx) {
-    const query = ctx.request.query;
-    const where = query.where;
+    const select = getSelectParams(ctx);
+    const where = select.where || {}
     return ( where && where.aon && where.rules ) ? {
         aon: where.aon && where.aon.indexOf('AND|OR') > -1 ? where.ano : 'AND',
         rules: where.rules || null
@@ -48,13 +54,14 @@ module.exports.where = function(ctx) {
 
 /**
  * desc data struct
- * @param {context} ctx 
+ * @param {context} ctx
+ * @returns {object|null} {field:xx,desc:true/false}|null
  * @example
  *      { orderby: { field: `pid`, desc: true/false } }
  */
 module.exports.orderby = function(ctx) {
-    const query = ctx.request.query;
-    const orderby = query.orderby;
+    const select = getSelectParams(ctx);
+    const orderby = select.orderby || {}
     return ( orderby && orderby.field ) ? {
         field: orderby.field,
         desc: orderby.desc || false
@@ -88,4 +95,15 @@ module.exports.getList = function(ctx) {
         orderby: this.orderby(ctx)
     }
     return params;
+}
+
+
+/**
+ * get query include select struct data
+ * @param {context} ctx 
+ */
+function getSelectParams(ctx) {
+    const query = ctx.request.query || {};
+    const select = typeof query.select == 'string' ? JSON.parse(query.select) : {};
+    return select;
 }

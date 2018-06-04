@@ -9,7 +9,7 @@ module.exports = {
     async getOne(ctx) {
         try {
             let params = paramResolver.getOne(ctx);
-            let data = await model.findOneById(params.id);
+            let data = await model.getOneById(params.id);
             ctx.body = json.success(data);
         } catch(jsonError) {
             logger.error(jsonError)
@@ -19,7 +19,7 @@ module.exports = {
     async getList(ctx) {
         try {
             let params = paramResolver.getList(ctx);
-            let data = await model.findList(params);
+            let data = await model.getList(params);
             ctx.body = json.success(data);
         } catch(jsonError) {
             logger.error(jsonError)

@@ -22,39 +22,11 @@ class Model {
     }
 
     /**
-     * 根据指定的字段值来判断
-     * @param {object} fields 根据指定的字段值来select
-     * @param {string} andOr 与或操作
-     */
-    getByFields(fields, andOr = `AND`) {
-        if (andOr == 'OR') {
-            andOr = 'OR'
-        }
-        return this._request(
-            'GET',
-            this._url()+'s',
-            {fields:fields,andOr:andOr}
-        )
-    }
-
-    /**
-     * 根据页码来获取
-     * @param {number} pagenum [选填]页码，默认是0
-     * @param {nunber} pagecount [选填]每页的个，默认是30
-     */
-    getByPageNum(pagenum,pagecount) {
-        return this._request(
-            'GET',
-            this._url()+'s',
-            {pagenum:pagenum || 0,pagecount:pagecount || this._PAGECOUNT}
-        )
-    }
-
-    /**
      * 请求的方式
      * @param {string} method 请求的方式
      * @param {string} url 请求的url，不用带baseurl 
      * @param {object} params 请求的参数
+     * @param {object} params.select select参数
      */
     _request(method,url,params) {
         return new Promise((resolve,reject) => {
@@ -67,7 +39,7 @@ class Model {
                 timeout: 10000,
                 responseType: 'json',
                 data: {
-                    params: params
+                    params
                 }
             }
             method.toUpperCase() == 'GET' 
@@ -106,7 +78,7 @@ class Model {
         return this._request(
             'PUT',
             this._url(),
-            {id:id,modified:modified}
+            {id,modified}
         )
     }
 
@@ -118,7 +90,41 @@ class Model {
         return this._request(
             'POST',
             this._url(),
-            {record:record}
+            {record}
+        )
+    }
+
+
+    /**
+     * 
+     * @param {object} params 参数
+     * @param {object} params.page 分页数据,{page:{index:0,count:20}}
+     * @param {object} params.where 条件查询,{rules:[key:string],aon:`AND`/`OR`/`NOT`}
+     * @param {object} params.orderBy 排序查询,{field:`pid`,desc:true/false}
+     */
+    getList(params) {
+        console.log('-->params',params);
+        let page = {index:0,count:20}
+        let where = null;
+        let orderBy = null;
+        if (params.page && params.page.index && params.page.count) {
+            page = {index:params.page.index,count:params.page.count}
+        }
+        if (params.where && params.where.rules) {
+            where = {rules:params.where.rules,aon:params.where.aon || 'AND'}
+        }
+        if (params.orderBy && params.orderBy.field && params.orderBy.desc) {
+            orderBy = {field:params.orderBy.field,desc:params.orderBy.desc}
+        }
+        const _params = {
+            page,
+            where,
+            orderBy
+        }
+        return this._request(
+            'GET',
+            this._url()+'s',
+            {select:_params}
         )
     }
 }

@@ -25,9 +25,15 @@ const actions = {
             throw e;
         }
     },
-    async getProjectsByPage({ commit }, pagenum) {
+    async getProjectsByPage({ commit }, index = 0) {
         try {
-            let data = await model.getByPageNum();
+            console.log(index);
+            let data = await model.getList({
+                page: {
+                    index: index,
+                    count: 20
+                }
+            });
             commit('page',data);
         } catch(e) {
             throw e;

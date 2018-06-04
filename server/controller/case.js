@@ -2,7 +2,7 @@ const json = require('../util/json')
 const code = require('../util/code')
 const paramResolver = require('../util/paramResolver')
 const logger = require('../util/logger')
-const model = require('../model/task')
+const model = require('../model/case')
 
 module.exports = {
     async getList(ctx) {
@@ -17,9 +17,7 @@ module.exports = {
     },
     async getOne(ctx) {
         try {
-            let params = paramResolver.getOne(ctx);
-            let data = await model.getOneById(params.id);
-            ctx.body = json.success(data);
+            
         } catch(jsonError) {
             logger.error(jsonError)
             ctx.body = jsonError

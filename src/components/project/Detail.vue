@@ -23,15 +23,9 @@
                         <div class="pull-right">
                            <!-- Small button group -->
                             <div class="btn-group">
-                                <button class="btn btn-default btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    添加测试任务 <span class="caret"></span>
-                                </button>
-                                <ul class="dropdown-menu">
-                                    <li><a href="../task/add.html">UI交互测试类型</a></li>
-                                    <li><a href="../task/add.html">连通性测试类型</a></li>
-                                    <li><a href="../task/add.html">单元测试类型</a></li>
-                                </ul>
+                                <a href="./add.html" class="btn btn-default btn-sm" type="button" >添加测试任务 </a>                              
                             </div>
+                           
                         </div>
                     </div>
                     <TaskList />
@@ -41,8 +35,15 @@
                     <div class="well well-sm clearfix">
                         <div class="pull-right">
                             <!-- Small button group -->
-                            <div class="btn-group">
-                                <a href="./add.html" class="btn btn-default btn-sm" type="button" >添加用例 </a>                              
+                             <div class="btn-group">
+                                <button class="btn btn-default btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    添加用例 <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><router-link :to="`/add/case?bizType=1`">UI交互测试类型</router-link></li>
+                                    <li><router-link :to="`/add/case?bizType=2`">连通性测试类型</router-link></li>
+                                    <li><router-link :to="`/add/case?bizType=3`">单元测试类型</router-link></li>
+                                </ul>
                             </div>
                         </div>
                     </div>

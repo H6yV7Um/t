@@ -4,6 +4,7 @@ import Header from '@/components/common/Header'
 import ProjectList from '@/components/project/List'
 import ProjectEdit from '@/components/project/Edit'
 import ProjectDetail from '@/components/project/detail'
+import CaseEdit from '@/components/case/Edit'
 
 Vue.use(Router)
 
@@ -38,6 +39,11 @@ export default new Router({
       path: '/header',
       name: 'Header',
       component: Header
+    },
+    {
+      path: '/:type/case/',
+      name: 'CaseAdd',
+      component: CaseEdit
     }
   ]
 })

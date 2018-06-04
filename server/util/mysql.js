@@ -20,15 +20,10 @@ const Mysql = function(dbConfig,table,opts = {}) {
 /**
  * 生成SQL语句
  * @interface insert 插入sql
- * @interface selectByPage 按照分页的格式来查询数据
- * @interface totalCount 查询表单的总记录数
+ * @interface getOneById 按照分页的格式来查询数据
+ * @interface select 查询表单列表以及总数
  */
 Mysql.prototype.SQL = {
-    _selectOpts: function(opt = {}) {
-        return {
-            desc: opt.desc || false,
-        }
-    },
     /**
      * 生成insert sql语句
      * @param {string} 表名
@@ -49,39 +44,67 @@ Mysql.prototype.SQL = {
         return `${sql} (${keys.join(',')}) VALUES (${values.join(',')})`
     },
     /**
-     * @param {string} table 表名
-     * @param {number} pagenum 第几页
-     * @param {number} pagecount 一页共有多少数据
-     * @param {object} opt 可选参数
-     */
-    selectByPage: function(table,pagenum,pagecount,opt = {}) {
-        let start = pagenum * pagecount;
-        let sql = `SELECT * FROM ${table} `;
-            //opt = this._selectOpts(opt);
-            console.log(opt);
-        if (opt.desc) {
-            sql += ` ORDER BY ${opt.desc} DESC`
-        }
-        return `${sql} LIMIT ${start},${pagecount}`
-    },
-    /**
-     * 生成获取数据表总条目数量的语句
-     * @param {string} table 表名
-     */
-    totalCount: function(table) {
-        let sql = `SELECT count(*) as total FROM ${table}`;
-        return sql;
-    },
-    /**
      * 生成查询某个id的数据的语句
      * @param {string} table 表名
      * @param {string} primaryKey id主键的名称
      * @param {number} id id的值
      */
-    selectOneById: function(table,primaryKey,id) {
+    getOneById: function(table,primaryKey,id) {
         let sql = `SELECT * FROM ${table} WHERE ${primaryKey} = ${id}`
         return sql;
+    },
+   
+    /**
+     * 生成select语句
+     * @param {object} params 参数
+     * @param {object|null} params.page 可选,{index:当前页面数,count:要获取一页的数}
+     * @param {object|null} params.where 可选,{aon:'AND'/'OR'/'NOT',rules:{key:value}}
+     * @param {object|null} params.orderby 可选,{field:`pid`,desc:true/false}
+     * @param {boolean} isGetTotalCount 可选,只是返回获取总数的sql语句
+     */
+    select: function(table,params,isGetTotalCount = false) {
+        const page = this._select_page(params.page);
+        const where = this._select_where(params.where);
+        const orderby = this._select_orderBy(params.orderby);
+        return isGetTotalCount ? 
+            `SELECT count(*) as total FROM ${table} ${where} ${orderby} ${page}` :
+            `SELECT * FROM ${table} ${where} ${orderby} ${page}`   
+    },
+    /**
+     * 生成select page部分的语句
+     * @param {object|null} page 可选,{index:当前页面数,count:要获取一页的数}
+     */
+    _select_page: function(page = {}) {
+        let index = page.index || 0;
+        let count = page.count || 20;
+        return `LIMIT ${index*count},${count}`
+    },
+    /**
+     * 生成select where部分的语句
+     * @param {object|null} where 可选,{aon:'AND'/'OR'/'NOT',rules:{key:value}}
+     */
+    _select_where: function(where = null) {
+        let arr = [];
+        if (where && where.rules) {
+            let rules = where.rules;
+            for(let i in rules) {
+                if (typeof rules[i] == 'string') {
+                    arr.push(`${i}='${rules[i]}'`)
+                } else if (typeof rules[i] == 'number') {
+                    arr.push(`${i}=${rules[i]}`)
+                }
+            }
+        }
+        return arr.length == 0 ? `` : 'WHERE ' + arr.join(` ${where.aon} `);
+    },
+    /**
+     * 生成select orderBy部分的语句
+     * @param {object|null} orderby 可选,{field:`pid`,desc:true/false}
+     */
+    _select_orderBy: function(orderby = null) {
+        return orderby ? `ORDER BY ${orderby.field} ${orderby.desc ? 'DESC' : ""}` : ``;
     }
+    
 }
 
 
@@ -123,6 +146,7 @@ Mysql.prototype.Format = {
 }
 
 Mysql.prototype.query = async function(sql) {
+    logger.debug(`fetch sql:${sql}`);
     return new Promise((resolve,reject) => {
         this.connection.query(sql,(error,results,fields) => {
             if (error) {
@@ -157,9 +181,9 @@ Mysql.prototype.insert = async function(data) {
  * 插叙某个id的数据，key是primaryKey
  * @param {number} id 请求参数的id 
  */
-Mysql.prototype.findOneById = async function(id) {
+Mysql.prototype.getOneById = async function(id) {
     try {
-        let sql = this.SQL.selectOneById(
+        let sql = this.SQL.getOneById(
             this.table,
             this.primaryKey,
             id
@@ -173,41 +197,35 @@ Mysql.prototype.findOneById = async function(id) {
 }
 
 /**
- * 按照分页来查询数据
- * @param {number} pagenum 第几页的值
- * @param {number} pagecount 一页多少条数据
- */
-Mysql.prototype.findByPage = async function(pagenum,pagecount) {
-    try {
-        let sql = this.SQL.selectByPage(
-            this.table,
-            pagenum,
-            pagecount,
-            {desc:this.primaryKey}
-        );
-        let res = await this.query(sql);
-        let sqlCount = this.SQL.totalCount(
-            this.table
-        )
-        let resTotal = await this.query(sqlCount);
-        return {
-            list: this.Format.convertResultForWeb(res.results,res.fields).results,
-            total: resTotal.results[0].total
-        }
-    } catch (jsonError) {
-        throw jsonError;
-    }
-}
-
-/**
  * 按照某种条件查询
  * @param {object} params 参数
  * @param {object|null} params.page 可选,{index:当前页面数,count:要获取一页的数}
  * @param {object|null} params.where 可选,{aon:'AND'/'OR'/'NOT',rules:{key:value}}
  * @param {object|null} params.orderby 可选,{field:`pid`,desc:true/false}
+ * @returns {object} 
+ *          {list:array,total:number}
  */
-Mysql.prototype.findList = async function(params) {
-    
+Mysql.prototype.getList = async function(params) {
+    try {
+        let sql = this.SQL.select(
+            this.table,
+            params
+        );
+        let res = await this.query(sql);
+            res = this.Format.convertResultForWeb(res.results,res.fields);
+        let sqlTotal = this.SQL.select(
+            this.table,
+            params,
+            true
+        );
+        let resTotal = await this.query(sqlTotal);
+        return {
+            list: res.results,
+            total: resTotal.results[0].total
+        }
+    } catch (jsonError) {
+        throw jsonError;
+    }
 }
 
 module.exports = Mysql;

@@ -1,4 +1,4 @@
-import model from 'api/task'
+import model from 'api/case'
 
 const state = {
     tasks: [],
@@ -15,8 +15,12 @@ const mutations = {
 const actions = {
     async getTasksByPid({ commit }, pid) {
         try {
-            let list = await model.getByFields({pid:pid})
-            commit('page',list)
+            let res = await model.getList({
+                where: {
+                    rules: {pid:pid}
+                }
+            })
+            return res;
         } catch(e) {
             throw e;
         }
