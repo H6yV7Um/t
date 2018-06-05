@@ -4,18 +4,18 @@
             <label for="type" class="col-sm-2 control-label">测试用户</label>
             <div class="col-sm-10">
                 <div class="loading" v-if="this.testAccounts == null"></div>
-                <b-btn v-b-modal.modal-add class="btn btn-default" v-else-if="this.testAccounts && this.testAccounts.length == 0">添加</b-btn>
+                <b-btn v-b-modal.modal-add-testaccount class="btn btn-default" v-else-if="this.testAccounts && this.testAccounts.length == 0">添加</b-btn>
                 <div class="input-group" v-else-if="this.testAccounts && this.testAccounts.length > 0">
                     <select name="testaccounts" class="form-control">
                         <option v-for="item in this.testAccounts" :key="item.id" :id="item.id">{{ item.account }}</option>
                     </select>
                      <span class="input-group-btn">
-                        <b-btn v-b-modal.modal-add class="btn btn-default">添加</b-btn>
+                        <b-btn v-b-modal.modal-add-testaccount class="btn btn-default">添加</b-btn>
                     </span>
                 </div>
             </div>
         </div>
-        <b-modal id="modal-add" ref="modal"
+        <b-modal id="modal-add-testaccount" ref="modal"
             centered 
             title="添加测试账号"
             @ok="submit"
@@ -68,12 +68,12 @@
             async submit(evt) {
                 evt.preventDefault()
                 const account = this.form.account;
-                const password = this.form.value;
+                const password = this.form.password;
                 if (!account || !password) {
                     return ;
                 }
                 try {
-                    await this.$store.dispatch('addTestAccounts',{
+                    await this.$store.dispatch('addTestAccount',{
                         account: account,
                         password: password
                     });
@@ -88,6 +88,5 @@
                 this.form.password = ""
             }
         }
-
     }
 </script>

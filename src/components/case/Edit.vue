@@ -33,7 +33,7 @@
                             <div class="form-group">
                                 <label for="owner" class="col-sm-2 control-label">创建人</label>
                                 <div class="col-sm-10">
-                                    <input type="owner" class="form-control" id="owner" placeholder="输入用例名称，最长16个字符">
+                                    <input type="owner" v-model="form.creater" class="form-control" id="owner" placeholder="输入用例名称，最长16个字符">
                                 </div>
                             </div>
                         </fieldset>
@@ -43,9 +43,9 @@
                             <div class="form-group">
                                 <label for="type" class="col-sm-2 control-label">用例类型</label>
                                 <div class="col-sm-10">
-                                    <select class="form-control" name="type" readonly>
+                                    <select class="form-control" name="type" readonly v-model="form.type">
                                         <option value="1">UI交互测试</option>
-                                        <option value="2" selected>连通性测试</option>
+                                        <option value="2">连通性测试</option>
                                         <option value="3">单元测试</option>
                                     </select>
                                 </div>
@@ -66,36 +66,36 @@
                                 <fieldset class="form-fieldset nest-1">
                                     <legend>输入配置</legend>
                                     <div class="form-group">
-                                        <label for="url" class="col-sm-2 control-label">请求URL</label>
+                                        <label class="col-sm-2 control-label">请求URL</label>
                                         <div class="col-sm-10">
-                                            <input type="url" class="form-control" id="url" placeholder="输入检测的URL">
+                                            <input type="url" v-model="config.url" class="form-control" placeholder="输入检测的URL">
                                         </div>
                                     </div>
                                     <TestAccount />
                                     <UserAgent />
                                     
                                     <div class="form-group">
-                                        <label for="type" class="col-sm-2 control-label">请求方式</label>
+                                        <label class="col-sm-2 control-label">请求方式</label>
                                         <div class="col-sm-10">
-                                            <select class="form-control" name="type">
+                                            <select class="form-control" v-model="config.method">
                                                 <option value="GET">GET</option>
                                                 <option value="POST">POST</option>
                                             </select>
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="type" class="col-sm-2 control-label">指定服务器</label>
+                                        <label class="col-sm-2 control-label">指定服务器</label>
                                         <div class="col-sm-10">
-                                            <input type="url" class="form-control" id="proxy" placeholder="选填，请求的代理host">
+                                            <input type="url" class="form-control"  v-model="config.proxy" placeholder="选填，请求的代理host">
                                         </div>
                                     </div>
                                 </fieldset>
                                 <fieldset class="form-fieldset nest-1">
                                     <legend>成功判定</legend>
                                     <div class="form-group">
-                                        <label for="type" class="col-sm-2 control-label">HTTP状态码</label>
+                                        <label class="col-sm-2 control-label">HTTP状态码</label>
                                         <div class="col-sm-10">
-                                            <select class="form-control" name="type">
+                                            <select class="form-control" v-model="config.succ_status_code">
                                                 <option value="200">200</option>
                                             </select>
                                             <!-- <p class="form-control-static">request</p> -->
@@ -130,8 +130,8 @@
                 </div>
                 <div class="panel-footer clearfix">
                     <div class="pull-right">
-                        <button type="submit" class="btn btn-default">取消</button>
-                        <button type="submit" class="btn btn-primary mar-l-5">保存</button>
+                        <router-link :to="`/project/${this.pid}`" class="btn btn-default">取消</router-link>
+                        <button type="button" @click="submit" class="btn btn-primary mar-l-5">保存</button>
                     </div>
                 </div>
             </div>
@@ -158,16 +158,17 @@
                 bizType: 1, // 业务类型
                 id: 0,
                 form: {},
-                projects: [],
-                ua: [],
-                testAccounts: []
+                config: {},
+                pid: 0
             }
         },
         async mounted() {
             try {
                 let params = this.$router.history.current.params;
+                let query = this.$router.history.current.query;
                 this.type = params.type;
                 this.id = params.id || 0
+                this.pid = query.pid || 0;
                 if (this.type == 'edit') {
                     this.title = '修改用例'
                     let data = await this.$store.dispatch('getCase',this.id)
@@ -202,6 +203,11 @@
                     },
                     mode: "text/javascript"   // 代码类型
                 })
+            },
+            async submit(evt) {
+                evt.preventDefault();
+                
+                console.log('-->formdata',this.form);
             }
         }
     }

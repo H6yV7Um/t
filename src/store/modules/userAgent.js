@@ -10,7 +10,7 @@ const mutations = {
         state.userAgents = data.list
         state.total = data.total
     },
-    add(state,data) {
+    addUserAgent(state,data) {
         state.userAgents.unshift(data)
         state.total += 1
     }
@@ -38,7 +38,7 @@ const actions = {
         try {
             const res = await model.insert(data)
             data.id = res
-            commit('add',data);
+            commit('addUserAgent',data);
         } catch(e) {
             throw e
         }

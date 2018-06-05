@@ -40,9 +40,9 @@
                                     添加用例 <span class="caret"></span>
                                 </button>
                                 <ul class="dropdown-menu">
-                                    <li><router-link :to="`/add/case?bizType=1`">UI交互测试类型</router-link></li>
-                                    <li><router-link :to="`/add/case?bizType=2`">连通性测试类型</router-link></li>
-                                    <li><router-link :to="`/add/case?bizType=3`">单元测试类型</router-link></li>
+                                    <li><router-link :to="`/add/case?bizType=1&pid=${this.pid}`">UI交互测试类型</router-link></li>
+                                    <li><router-link :to="`/add/case?bizType=2&pid=${this.pid}`">连通性测试类型</router-link></li>
+                                    <li><router-link :to="`/add/case?bizType=3&pid=${this.pid}`">单元测试类型</router-link></li>
                                 </ul>
                             </div>
                         </div>
@@ -82,14 +82,14 @@
             return {
                 initError: false,
                 project: null,
-                id: 0
+                pid: 0
             }
         },
         async mounted() {
             try {
                 let params = this.$router.history.current.params;
-                this.id = params.id || 0;
-                let data = await this.$store.dispatch('getProject',this.id)
+                this.pid = params.id || 0;
+                let data = await this.$store.dispatch('getProject',this.pid)
                 if ( !data ) {
                     this.initError = true;
                     return ;

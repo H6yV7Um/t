@@ -10,7 +10,7 @@ const mutations = {
         state.testAccounts = data.list
         state.total = data.total
     },
-    add(state,data) {
+    addTestAccount(state,data) {
         state.testAccounts.unshift(data)
         state.total += 1
     }
@@ -38,7 +38,7 @@ const actions = {
         try {
             const res = await model.insert(data)
             data.id = res
-            commit('add',data);
+            commit('addTestAccount',data);
         } catch(e) {
             throw e
         }

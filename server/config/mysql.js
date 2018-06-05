@@ -1,5 +1,5 @@
 module.exports = {
     'admin': {
-      
+        
     }
 }
