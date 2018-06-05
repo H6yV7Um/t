@@ -142,9 +142,15 @@
     import Header from '../common/Header.vue'
     import TestAccount from '../common/form/TestAccount.vue'
     import UserAgent from '../common/form/UserAgent.vue'
+    import CodeMirror from 'codemirror/lib/codemirror.js'
+   
 
     export default {
-        components: {Header,TestAccount,UserAgent},
+        components: {
+            Header,
+            TestAccount,
+            UserAgent
+        },
         data() {
             return {
                 title: '添加用例',
@@ -169,10 +175,34 @@
                 } else if (this.type == 'add') {
                     this.bizType = this.$router.history.current.query.bizType
                 }
+                this.initCodeEdit();
             } catch (e) {
                 console.error(e);
                 alert('获取数据错误')
             }  
+        },
+        methods: {
+            initCodeEdit() {
+                var codeEditor = CodeMirror.fromTextArea(document.getElementById('code-editor'),{
+                    value : '',
+                    lineNumbers : true, // 显示行号
+                    name : "javascript",
+                    theme : "panda-syntax",
+                    //readOnly : true,
+                    autoCloseTags: true,
+                    tabSize : 4,
+                    indentUnit : 4,
+                    extraKeys: {
+                        "F11": function(cm) {
+                            cm.setOption("fullScreen", !cm.getOption("fullScreen"));
+                        },
+                        "Esc": function(cm) {
+                            if (cm.getOption("fullScreen")) cm.setOption("fullScreen", false);
+                        }
+                    },
+                    mode: "text/javascript"   // 代码类型
+                })
+            }
         }
     }
 </script>

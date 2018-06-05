@@ -151,11 +151,19 @@ legend {
 .btn {
     position: relative;
 }
+.text-muted {
+    color: #777 !important;
+}
+.text-muted-more {
+    color: #999 !important;
+}
 
 /*定义滚动条高宽及背景 高宽分别对应横竖滚动条的尺寸*/  
 ::-webkit-scrollbar {width: 8px;height: 8px;}
 ::-webkit-scrollbar-thumb {border-width: 1px;border-style: solid;border-color: #fff;border-radius: 6px;background: #d7d7d7;}
 ::-webkit-scrollbar-track-piece {width: 11px;height: 11px;}
+
+
 
 
 /*

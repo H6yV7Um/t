@@ -103,17 +103,18 @@ class Model {
      * @param {object} params.orderBy 排序查询,{field:`pid`,desc:true/false}
      */
     getList(params) {
-        console.log('-->params',params);
         let page = {index:0,count:20}
         let where = null;
         let orderBy = null;
-        if (params.page && params.page.index && params.page.count) {
+        if (params.page && typeof params.page.index != "undefined" && params.page.count) {
             page = {index:params.page.index,count:params.page.count}
+        } else if (params.page == 'all') {
+            page = null;
         }
         if (params.where && params.where.rules) {
             where = {rules:params.where.rules,aon:params.where.aon || 'AND'}
         }
-        if (params.orderBy && params.orderBy.field && params.orderBy.desc) {
+        if (params.orderBy && params.orderBy.field && typeof params.orderBy.desc != "undefined") {
             orderBy = {field:params.orderBy.field,desc:params.orderBy.desc}
         }
         const _params = {

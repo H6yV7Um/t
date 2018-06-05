@@ -3,7 +3,7 @@ module.exports.error = function(error) {
 }
 
 module.exports.debug = function(msg) {
-    writeLogger('DEBUG',msg)
+    writeLogger('DEBUG',`${ typeof msg == 'object' ? JSON.stringify(msg) : msg }`)
 }
 
 function writeLogger(level,msg) {

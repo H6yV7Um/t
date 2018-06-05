@@ -4,6 +4,7 @@ node_modules/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+server/config/
 
 # Editor directories and files
 .idea
@@ -14,4 +15,4 @@ yarn-error.log*
 *.sln
 
 # server files
-./server/config/
+

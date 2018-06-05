@@ -1,3 +1,5 @@
+const logger = require('./logger')
+
 /**
  * insert data struct
  * @param {context} ctx
@@ -6,6 +8,7 @@
  */
 module.exports.insert = function(ctx) {
     const body = ctx.request.body;
+    logger.debug(`|param resolver|insert|${JSON.stringify(body.record)}`);
     return body.record;
 }
 
@@ -17,6 +20,7 @@ module.exports.insert = function(ctx) {
  */
 module.exports.modify = function(ctx) {
     const body = ctx.request.body;
+    logger.debug(`|param resolver|modify|${JSON.stringify(body)}`);
     return {id:body.id,modify:body.modify}
 }
 
@@ -30,6 +34,7 @@ module.exports.modify = function(ctx) {
 module.exports.page = function(ctx) {
     const select = getSelectParams(ctx);
     const page = select.page || {}
+    logger.debug(`|param resolver|page|${JSON.stringify(page)}`);
     return {
         index: page.index ? Number(page.index) : 0,
         count: page.count ? Number(page.count) : 20
@@ -46,6 +51,7 @@ module.exports.page = function(ctx) {
 module.exports.where = function(ctx) {
     const select = getSelectParams(ctx);
     const where = select.where || {}
+    logger.debug(`|param resolver|where|${JSON.stringify(where)}`);
     return ( where && where.aon && where.rules ) ? {
         aon: where.aon && where.aon.indexOf('AND|OR') > -1 ? where.ano : 'AND',
         rules: where.rules || null
@@ -61,7 +67,8 @@ module.exports.where = function(ctx) {
  */
 module.exports.orderby = function(ctx) {
     const select = getSelectParams(ctx);
-    const orderby = select.orderby || {}
+    const orderby = select.orderBy || {}
+    logger.debug(`|param resolver|orderby|${JSON.stringify(orderby)}`);
     return ( orderby && orderby.field ) ? {
         field: orderby.field,
         desc: orderby.desc || false
@@ -76,6 +83,7 @@ module.exports.orderby = function(ctx) {
  */
 module.exports.getOne = function(ctx) {
     const params = ctx.params;
+    logger.debug(`|param resolver|getOne|${JSON.stringify(params)}`);
     return {id:Number(params.id)}
 }
 
@@ -94,6 +102,7 @@ module.exports.getList = function(ctx) {
         where: this.where(ctx),
         orderby: this.orderby(ctx)
     }
+    logger.debug(`|param resolver|getList|${JSON.stringify(params)}`);
     return params;
 }
 

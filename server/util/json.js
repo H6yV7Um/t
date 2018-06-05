@@ -1,4 +1,5 @@
 const code = require('./code');
+const logger = require('./logger')
 
 /**
  * 返回成功的json
@@ -19,6 +20,7 @@ module.exports.success = function(data) {
  */
 module.exports.fail = function(codeRes,error) {
     codeRes = codeRes || code.UNKNOW_ERROR;
+    logger.error(error);
     return {
         ret: codeRes.code,
         msg: codeRes.message,

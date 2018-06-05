@@ -2,6 +2,8 @@ const router = require('koa-router')()
 const projectCtrl = require('../controller/project')
 const taskCtrl = require('../controller/task')
 const caseCtrl = require('../controller/case')
+const useragentCtrl = require('../controller/useragent')
+const testaccountCtrl = require('../controller/testaccount')
 
 const routers = router
     // project
@@ -16,5 +18,13 @@ const routers = router
     // case
     .get('/case/:id',caseCtrl.getOne)
     .get('/cases',caseCtrl.getList)
+    // useragent
+    .get('/useragent/:id',useragentCtrl.getOne)
+    .get('/useragents',useragentCtrl.getList)
+    .post('/useragent',useragentCtrl.insert)
+    // testaccount
+    .get('/testaccount/:id',testaccountCtrl.getOne)
+    .get('/testaccounts',testaccountCtrl.getList)
+    .post('/testaccount',testaccountCtrl.insert)
 
 module.exports = routers;

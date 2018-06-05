@@ -3,6 +3,8 @@ import Vuex from 'Vuex'
 import projects from './modules/project'
 import cases from './modules/case'
 import tasks from './modules/task'
+import userAgent from './modules/userAgent'
+import testAccount from './modules/testAccount'
 
 Vue.use(Vuex)
 
@@ -12,7 +14,9 @@ export default new Vuex.Store({
     modules: {
         projects,
         cases,
-        tasks
+        tasks,
+        userAgent,
+        testAccount
     },
     strict: debug
 })
