@@ -34,7 +34,6 @@ module.exports = {
                 ctx.body = json.fail(code.PARAMS_ERROR,res.result);
                 return ;
             }
-            
             let data = await model.insert(params);
             ctx.body = json.success(data);
         } catch(jsonError) {

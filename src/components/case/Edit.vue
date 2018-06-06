@@ -71,8 +71,8 @@
                                             <input type="url" v-model="config.url" class="form-control" placeholder="输入检测的URL">
                                         </div>
                                     </div>
-                                    <TestAccount />
-                                    <UserAgent />
+                                    <TestAccount ref="testaccount"/>
+                                    <UserAgent ref="useragent" />
                                     
                                     <div class="form-group">
                                         <label class="col-sm-2 control-label">请求方式</label>
@@ -207,7 +207,7 @@
             async submit(evt) {
                 evt.preventDefault();
                 
-                console.log('-->formdata',this.form);
+                console.log('-->formdata',this.$refs.testaccount.selected,this.$refs.useragent.selected);
             }
         }
     }

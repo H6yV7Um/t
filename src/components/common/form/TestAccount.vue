@@ -6,7 +6,7 @@
                 <div class="loading" v-if="this.testAccounts == null"></div>
                 <b-btn v-b-modal.modal-add-testaccount class="btn btn-default" v-else-if="this.testAccounts && this.testAccounts.length == 0">添加</b-btn>
                 <div class="input-group" v-else-if="this.testAccounts && this.testAccounts.length > 0">
-                    <select name="testaccounts" class="form-control">
+                    <select name="testaccounts" class="form-control" v-model="selected">
                         <option v-for="item in this.testAccounts" :key="item.id" :id="item.id">{{ item.account }}</option>
                     </select>
                      <span class="input-group-btn">
@@ -49,7 +49,8 @@
                 form: {
                     account: "",
                     password: ""
-                }
+                },
+                selected: null
             }
         },
         computed: {
