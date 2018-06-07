@@ -25,6 +25,14 @@ const actions = {
         } catch(e) {
             throw e;
         }
+    },
+    async addCase({commit}, data) {
+        try {
+            let res = await model.insert(data)
+            return res;
+        } catch(e) {
+            throw e
+        }
     }
 }
 

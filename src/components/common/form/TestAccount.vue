@@ -7,7 +7,7 @@
                 <b-btn v-b-modal.modal-add-testaccount class="btn btn-default" v-else-if="this.testAccounts && this.testAccounts.length == 0">添加</b-btn>
                 <div class="input-group" v-else-if="this.testAccounts && this.testAccounts.length > 0">
                     <select name="testaccounts" class="form-control" v-model="selected">
-                        <option v-for="item in this.testAccounts" :key="item.id" :id="item.id">{{ item.account }}</option>
+                        <option v-for="item in this.testAccounts" :key="item.id" v-bind:value="item.id">{{ item.account }}</option>
                     </select>
                      <span class="input-group-btn">
                         <b-btn v-b-modal.modal-add-testaccount class="btn btn-default">添加</b-btn>
@@ -61,6 +61,10 @@
         async mounted() {
             try {
                 await this.$store.dispatch('getAllTestAccounts');
+                if (!this.selected) {
+                    this.selected = this.$store.getters.testAccounts[0].id
+                }
+                console.log('--->this.selected',this.selected);
             } catch(e) {
                 console.error(e);
             }
@@ -87,6 +91,9 @@
             clear() {
                 this.form.account = ""
                 this.form.password = ""
+            },
+            setSelected(selected) {
+                this.selected = selected;
             }
         }
     }

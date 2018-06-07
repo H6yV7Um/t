@@ -2,7 +2,8 @@ import model from 'api/testAccount'
 
 const state = {
     testAccounts: null,
-    total: 0
+    total: 0,
+    selected: null
 }
 
 const mutations = {
@@ -42,9 +43,6 @@ const actions = {
         } catch(e) {
             throw e
         }
-    },
-    getSelected({commit,state},selectid) {
-        console.log(state.testAccounts,selectid);
     }
 }
 
@@ -52,8 +50,8 @@ const getters = {
     testAccounts(state) {
         return state.testAccounts
     },
-    selected(state) {
-        console.log('---->getters selected')
+    selectedItem(state) {
+        console.log('selectedItem',state.testAccounts,state.selected)
     }
 }
 

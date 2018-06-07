@@ -7,7 +7,7 @@
                 <b-btn v-b-modal.modal-add-useragent class="btn btn-default" v-else-if="this.userAgents && this.userAgents.length == 0">添加</b-btn>
                 <div class="input-group" v-else-if="this.userAgents && this.userAgents.length > 0">
                     <select name="useragent" class="form-control" v-model="selected">
-                        <option v-for="item in this.userAgents" :key="item.id" :id="item.id">{{ item.name }}</option>
+                        <option v-for="item in this.userAgents" v-bind:value="item.id" :key="item.id">{{ item.name }}</option>
                     </select>
                     <span class="input-group-btn">
                         <b-btn v-b-modal.modal-add-useragent class="btn btn-default">添加</b-btn>
@@ -62,6 +62,9 @@
         async mounted() {
             try {
                 await this.$store.dispatch('getAllUserAgents');
+                if(!this.selected) {
+                    this.selected = this.$store.getters.userAgents[0].id
+                }
             } catch(e) {
                 console.error(e);
             }

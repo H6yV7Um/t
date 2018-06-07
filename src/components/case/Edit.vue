@@ -20,15 +20,6 @@
                                     <textarea v-model="form.desc" id="desc" class="form-control" rows="3"></textarea>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <label for="type" class="col-sm-2 control-label">所属项目</label>
-                                <div class="col-sm-10">
-                                    <select class="form-control" name="pid">
-                                        <option value="1">A项目</option>
-                                        <option value="2">B项目</option>
-                                    </select>
-                                </div>
-                            </div>
                             
                             <div class="form-group">
                                 <label for="owner" class="col-sm-2 control-label">创建人</label>
@@ -43,11 +34,8 @@
                             <div class="form-group">
                                 <label for="type" class="col-sm-2 control-label">用例类型</label>
                                 <div class="col-sm-10">
-                                    <select class="form-control" name="type" readonly v-model="form.type">
-                                        <option value="1">UI交互测试</option>
-                                        <option value="2">连通性测试</option>
-                                        <option value="3">单元测试</option>
-                                    </select>
+                                    <p class="form-control-static">{{ bizTypeTexts[bizType] }}</p>
+                                    
                                 </div>
                             </div>
                             <!--S:连通性配置-->
@@ -78,7 +66,7 @@
                                         <label class="col-sm-2 control-label">请求方式</label>
                                         <div class="col-sm-10">
                                             <select class="form-control" v-model="config.method">
-                                                <option value="GET">GET</option>
+                                                <option value="GET" selected>GET</option>
                                                 <option value="POST">POST</option>
                                             </select>
                                         </div>
@@ -156,6 +144,7 @@
                 title: '添加用例',
                 type: 'add',
                 bizType: 1, // 业务类型
+                bizTypeTexts: ['','UI交互测试','连通性测试','单元测试'],
                 id: 0,
                 form: {},
                 config: {},
@@ -174,7 +163,8 @@
                     let data = await this.$store.dispatch('getCase',this.id)
                     this.form = data;
                 } else if (this.type == 'add') {
-                    this.bizType = this.$router.history.current.query.bizType
+                    this.bizType = Number(this.$router.history.current.query.bizType);
+                    this.title = `添加【${ this.bizTypeTexts[this.bizType] }】类型用例`
                 }
                 this.initCodeEdit();
             } catch (e) {
@@ -206,8 +196,39 @@
             },
             async submit(evt) {
                 evt.preventDefault();
-                
-                console.log('-->formdata',this.$refs.testaccount.selected,this.$refs.useragent.selected);
+                try {
+                    const baseData = this.getBaseData();
+                    const bizConfig = this.getBizConfig();
+                    baseData.json_config = bizConfig;
+                    await this.$store.dispatch('addCase',baseData);
+                    this.$router.push(`/project/${this.pid}`)
+                } catch(e) {
+                    console.error(e);
+                    alert('添加用例失败')
+                }
+                console.log('baseData',baseData,'bizConfig',bizConfig)
+            },
+            getBaseData() {
+                return {
+                    name: this.form.name,
+                    desc: this.form.desc,
+                    creater: this.form.creater,
+                    type: this.form.type || this.bizType
+                }
+            },
+            getBizConfig() {
+                var config = {};
+                switch (this.bizType) {
+                    case 2: config = {
+                        url: this.config.url,
+                        proxy: this.config.proxy,
+                        method: this.config.method,
+                        succ_status_code: this.config.succ_status_code,
+                        testaccount: this.$refs.testaccount.selected,
+                        useragent: this.$refs.useragent.selected
+                    };break;
+                }
+                return config;
             }
         }
     }
